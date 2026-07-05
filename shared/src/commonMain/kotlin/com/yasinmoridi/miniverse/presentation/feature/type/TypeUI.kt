@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -42,19 +43,37 @@ fun TypeUI(navController: NavHostController) {
 
     val scrollState = rememberScrollState()
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(GR_BG),
-        contentAlignment = Alignment.TopCenter
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+
+        Spacer(Modifier.height(40.dp))
+
+        // ⚙️ Settings Button
+        IconButton(
+            onClick = { navController.navigate(AppDestination.Settings) },
+            modifier = Modifier
+                .align(Alignment.End)
+                .padding(end = 16.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = UIStrings.SETTINGS,
+                tint = DARK_NAVY,
+                modifier = Modifier.size(32.dp)
+            )
+        }
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .widthIn(max = 600.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(Modifier.height(60.dp))
+            Spacer(Modifier.height(10.dp))
 
             MultiPlayerHeader()
 
@@ -118,7 +137,6 @@ fun TypeUI(navController: NavHostController) {
         // 🟢 BUTTON (ثابت پایین)
         Box(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .widthIn(max = 600.dp)
                 .padding(bottom = 32.dp),

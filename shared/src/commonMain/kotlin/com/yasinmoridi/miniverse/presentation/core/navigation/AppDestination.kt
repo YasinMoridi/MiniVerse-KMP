@@ -12,6 +12,9 @@ sealed interface AppDestination {
 
     @Serializable
     data object Type : AppDestination
+
+    @Serializable
+    data object Settings : AppDestination
 }
 
 

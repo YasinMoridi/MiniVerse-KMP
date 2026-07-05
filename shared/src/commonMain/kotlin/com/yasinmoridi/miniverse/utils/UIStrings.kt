@@ -22,4 +22,13 @@ object UIStrings {
     const val BRICK_BREAKER = "BRICK BREAKER"
     const val CATCH_THE_OBJECT = "CATCH THE OBJECT"
     const val COMING_SOON = "COMING SOON"
+
+    // Settings
+    const val SETTINGS = "SETTINGS"
+    const val VOLUME = "Volume"
+    const val RESOLUTION = "Resolution"
+    const val MAX_FPS = "Max FPS"
+    const val VIBRATION = "Vibration"
+    const val SOUND = "Sound"
+    const val TERMS_AND_PRIVACY = "Our Terms and Privacy Policy."
 }

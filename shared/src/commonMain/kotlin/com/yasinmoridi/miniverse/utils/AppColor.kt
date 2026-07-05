@@ -51,6 +51,15 @@ object AppColor {
     val CARD_TEXT_BOX_YELLOW = Color(0xFFFFC926)
     val CARD_TEXT_BOX_CYAN = Color(0xFF38CEFF)
 
+    // Settings Screen
+    val SETTINGS_BG = Color(0xFFE5D9FF)
+    val SETTINGS_CARD_BG = Color(0xFFE1F5FE)
+    val SLIDER_THUMB = Color(0xFFCE4646)
+    val SLIDER_TRACK_ACTIVE = Color(0xFF3F4A7A)
+    val SLIDER_TRACK_INACTIVE = Color(0xFFDADADA)
+    val PREVIEW_BOX_BG = Color(0xFFD9D9D9)
+    val SWITCH_THUMB_ON = Color(0xFF6E9DDA)
+
     // Gradients
     val GR_BG = Brush.verticalGradient(
         colors = listOf(
