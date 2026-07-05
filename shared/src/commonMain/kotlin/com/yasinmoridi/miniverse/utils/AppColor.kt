@@ -37,6 +37,19 @@ object AppColor {
     val LINE_DECORATION = Color.White.copy(alpha = 0.2f)
     val PROGRESS_BG = Color(0xFFC4D1F5)
     val PROGRESS_FILL = Color(0xFF536EAF)
+    
+    // Home Screen (From Image)
+    val HOME_BG = Color(0xFFE3F2FD)
+    val CARD_BORDER = Color(0xFF56B7FF)
+    val CARD_TEXT_BOX_BLUE = Color(0xFF0B5CC6)
+    val CARD_TEXT_BOX_PURPLE = Color(0xFF8738ED)
+    val CARD_TEXT_BOX_GREEN = Color(0xFF547024)
+    val CARD_TEXT_BOX_RED = Color(0xFFEA2F03)
+    val CARD_TEXT_BOX_PINK = Color(0xFFDD4281)
+    val CARD_TEXT_BOX_ORANGE = Color(0xFFFF9718)
+    val CARD_TEXT_BOX_GRAY = Color(0xFFA8816F)
+    val CARD_TEXT_BOX_YELLOW = Color(0xFFFFC926)
+    val CARD_TEXT_BOX_CYAN = Color(0xFF38CEFF)
 
     // Gradients
     val GR_BG = Brush.verticalGradient(
