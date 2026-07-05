@@ -35,6 +35,7 @@ import com.yasinmoridi.miniverse.utils.AppColor.SHARE_BTN_GREEN
 import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_PLAYER_BDG
 import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_PLAYER_BTN
 import com.yasinmoridi.miniverse.utils.UIStrings
+import com.yasinmoridi.miniverse.utils.mouseDragScroll
 
 @Composable
 fun TypeUI(navController: NavHostController) {
@@ -61,6 +62,7 @@ fun TypeUI(navController: NavHostController) {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
+                    .mouseDragScroll(scrollState)
                     .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {

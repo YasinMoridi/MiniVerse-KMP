@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.yasinmoridi.miniverse.utils.AppColor
 import com.yasinmoridi.miniverse.utils.UIStrings
+import com.yasinmoridi.miniverse.utils.mouseDragScroll
 import miniverse.shared.generated.resources.Res
 import miniverse.shared.generated.resources.img_sword
 import org.jetbrains.compose.resources.painterResource
@@ -38,6 +40,7 @@ fun HomeUI(
     playerCount: Int,
     navController: NavHostController
 ) {
+    val gridState = rememberLazyGridState()
     val games = listOf(
         Game(UIStrings.TAP_COUNTER, AppColor.CARD_TEXT_BOX_BLUE),
         Game(UIStrings.GUESS_THE_NUMBER, AppColor.CARD_TEXT_BOX_PURPLE),
@@ -83,9 +86,11 @@ fun HomeUI(
     ) { padding ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
+            state = gridState,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding),
+                .padding(padding)
+                .mouseDragScroll(gridState),
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
