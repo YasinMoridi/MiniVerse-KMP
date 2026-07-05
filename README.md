@@ -1,46 +1,61 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM).
+# 🌌 MiniVerse
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## 📜 Description  
+**MiniVerse** is a modern, cross-platform gaming hub designed to provide a seamless and engaging experience for solo and multiplayer mini-games.  
+Built with **Kotlin Multiplatform (KMP)** and **Compose Multiplatform**, the app runs natively on **Android, iOS, Desktop (Windows/macOS/Linux), and Web**.  
+It follows modern Android development practices, utilizing **Material 3** for a vibrant UI and **Koin** for dependency injection, ensuring a scalable and maintainable codebase.
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+## ✨ Features
+- 🌍 **Cross-Platform:** Single codebase for Android, iOS, Desktop, and Web.
+- 🎮 **Multiplayer Focus:** Support for 1 to 4 players with a dedicated player selection interface.
+- 🕹️ **Mini-Game Hub:** A central place to discover and play various mini-games.
+- 🎨 **Material 3 UI:** Modern, responsive design with customized player-themed aesthetics.
+- ⚙️ **Customizable Settings:** Easy navigation to app settings and configurations.
+- 📲 **Social Sharing:** Built-in sharing functionality to invite friends to the MiniVerse.
+- 🚀 **Smooth UX:** Optimized scrolling and drag interactions for a premium feel.
 
-### Running the apps
+## 🛠 Built With
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+| Category                  | Technology                                                                                                  |
+|---------------------------|-------------------------------------------------------------------------------------------------------------|
+| 🏛 Architecture            | Kotlin Multiplatform (KMP)                                                                                  |
+| 🖼️ UI Framework            | [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform) (Material 3)                   |
+| 🛠️ Dependency Injection    | [Koin](https://insert-koin.io/)                                                                             |
+| 🌐 Networking              | [Ktor](https://ktor.io/)                                                                                    |
+| 📜 Serialization           | [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)                                   |
+| 🧭 Navigation              | [Compose Navigation (JetBrains)](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation.html) |
+| 🔄 Coroutines              | [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines)                                         |
 
-- Android app: `./gradlew :androidApp:assembleDebug`
-- Desktop app:
-  - Hot reload: `./gradlew :desktopApp:hotRun --auto`
-  - Standard run: `./gradlew :desktopApp:run`
-- Web app:
-  - Wasm target (faster, modern browsers): `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
-  - JS target (slower, supports older browsers): `./gradlew :webApp:jsBrowserDevelopmentRun`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+## 🚀 Running the App
 
-### Running tests
+### Android
+```bash
+./gradlew :androidApp:assembleDebug
+```
 
-Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
+### Desktop (JVM)
+- **Standard Run:** `./gradlew :desktopApp:run`
 
-- Android tests: `./gradlew :shared:testAndroidHostTest`
-- Desktop tests: `./gradlew :shared:jvmTest`
-- Web tests:
-  - Wasm target: `./gradlew :shared:wasmJsTest`
-  - JS target: `./gradlew :shared:jsTest`
-- iOS tests: `./gradlew :shared:iosSimulatorArm64Test`
+### Web
+- **Wasm Target:** `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
+- **JS Target:** `./gradlew :webApp:jsBrowserDevelopmentRun`
 
----
+### iOS
+Open the `iosApp` directory in Xcode and run the project.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+<!--
+## 📱 Screenshots
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [YouTrack](https://youtrack.jetbrains.com/newIssue?project=CMP).
+<table style="width:100%">
+  <tr>
+    <th>Player Selection</th>
+    <th>Game Mode</th> 
+    <th>Settings</th> 
+  </tr>
+  <tr>
+    <td><img src="screenshot/player_selection.png" width=240/></td> 
+    <td><img src="screenshot/game_mode.png" width=240/></td>
+    <td><img src="screenshot/settings.png" width=240/></td>
+  </tr>
+</table>
+-->
