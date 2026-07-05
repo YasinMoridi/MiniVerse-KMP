@@ -6,6 +6,17 @@ import androidx.compose.ui.graphics.Color
 
 object AppColor {
 
+    //Player Color
+    val RED_PLAYER_BTN = Color(0xFFFF5252)
+    val BLUE_PLAYER_BTN = Color(0xFF448AFF)
+    val GREEN_PLAYER_BTN = Color(0xFF66BB6A)
+    val Yello_PLAYER_BTN = Color(0xFFFFB74D)
+
+    val RED_PLAYER_BDG = Color(0xFFB71C1C)
+    val BLUE_PLAYER_BDG = Color(0xFF0277BD)
+    val GREEN_PLAYER_BDG = Color(0xFF2E7D32)
+    val Yello_PLAYER_BDG = Color(0xFFEF6C00)
+
 
     //Names
     val RED_NAME_APP = Color(0xFFD30000)
@@ -15,7 +26,6 @@ object AppColor {
     val PINK_NAME_APP = Color(0xFFFF0EE7)
 
     //Colorful bar
-
     val RED_COLORFUL_BAR = Color(0xFFFF6B6B)
     val BLUE_COLORFUL_BAR = Color(0xFF4A90E2)
     val GREEN_COLORFUL_BAR = Color(0xFF7ED321)
@@ -23,7 +33,7 @@ object AppColor {
     val ORANGE_COLORFUL_BAR = Color(0xFFF5C542)
 
     //GR
-    val SPLASH_GR_BG = Brush.verticalGradient(
+    val GR_BG = Brush.verticalGradient(
         colors = listOf(
             Color(0xFFE0D7FF),
             Color(0xFFF3EEFF)

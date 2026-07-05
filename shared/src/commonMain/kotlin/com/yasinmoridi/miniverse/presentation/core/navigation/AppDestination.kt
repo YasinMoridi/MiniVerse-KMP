@@ -11,13 +11,7 @@ sealed interface AppDestination {
     data object Home : AppDestination
 
     @Serializable
-    data object Bible : AppDestination
-
-    @Serializable
-    data object FindPlan : AppDestination
-
-    @Serializable
-    data object FaithJourney : AppDestination
+    data object Type : AppDestination
 }
 
 

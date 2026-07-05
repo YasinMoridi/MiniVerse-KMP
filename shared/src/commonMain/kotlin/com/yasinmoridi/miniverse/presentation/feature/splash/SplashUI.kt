@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.components.MultiPlayerHeader
 import com.yasinmoridi.miniverse.presentation.core.navigation.AppDestination
 import com.yasinmoridi.miniverse.utils.AppColor.BLUE_COLORFUL_BAR
 import com.yasinmoridi.miniverse.utils.AppColor.BLUE_NAME_APP
@@ -34,7 +35,7 @@ import com.yasinmoridi.miniverse.utils.AppColor.ORANGE_COLORFUL_BAR
 import com.yasinmoridi.miniverse.utils.AppColor.PINK_NAME_APP
 import com.yasinmoridi.miniverse.utils.AppColor.RED_COLORFUL_BAR
 import com.yasinmoridi.miniverse.utils.AppColor.RED_NAME_APP
-import com.yasinmoridi.miniverse.utils.AppColor.SPLASH_GR_BG
+import com.yasinmoridi.miniverse.utils.AppColor.GR_BG
 import com.yasinmoridi.miniverse.utils.AppColor.SPLASH_GR_CIRCLE
 import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_COLORFUL_BAR
 import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_NAME_APP
@@ -64,7 +65,7 @@ fun SplashUI(
 
     LaunchedEffect(progress, isTimerFinished) {
         if (progress == 1f && isTimerFinished) {
-            navController.navigate(AppDestination.Home) {
+            navController.navigate(AppDestination.Type) {
                 popUpTo(AppDestination.Splash) { inclusive = true }
             }
         }
@@ -73,65 +74,28 @@ fun SplashUI(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(SPLASH_GR_BG),
+            .background(GR_BG),
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 120.dp)
-        ) {
-            // MULTI text
-            val multiText = buildAnnotatedString {
-                val colors = listOf(
-                    RED_NAME_APP,
-                    BLUE_NAME_APP,
-                    GREEN_NAME_APP,
-                    YELLOW_NAME_APP,
-                    PINK_NAME_APP
-                )
-                "MULTI".forEachIndexed { index, char ->
-                    withStyle(style = SpanStyle(color = colors[index % colors.size])) {
-                        append(char)
-                    }
+
+        MultiPlayerHeader(
+            content = {
+                // Gradient circle
+                Box(
+                    modifier = Modifier
+                        .size(200.dp)
+                        .clip(CircleShape)
+                        .background(SPLASH_GR_CIRCLE),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(Res.drawable.img_sword),
+                        contentDescription = "Splash Image",
+                        modifier = Modifier.size(75.dp),
+                    )
                 }
             }
-            Text(
-                text = multiText,
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Black
-            )
-
-            Text(
-                text = "PLAYER GAMES",
-                fontSize = 36.sp,
-                fontWeight = FontWeight.Black,
-                color = Color.Black
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Colorful bar
-            SlantedColorfulBar()
-
-            Spacer(modifier = Modifier.height(100.dp))
-
-            // Gradient circle
-            Box(
-                modifier = Modifier
-                    .size(200.dp)
-                    .clip(CircleShape)
-                    .background(SPLASH_GR_CIRCLE),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(Res.drawable.img_sword),
-                    contentDescription = "Splash Image",
-                    modifier = Modifier.size(75.dp),
-                )
-            }
-        }
+        )
 
         Box(
             modifier = Modifier

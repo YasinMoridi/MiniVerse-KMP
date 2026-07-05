@@ -8,10 +8,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.yasinmoridi.miniverse.presentation.feature.home.HomeUI
 import com.yasinmoridi.miniverse.presentation.feature.splash.SplashUI
+import com.yasinmoridi.miniverse.presentation.feature.type.TypeUI
 
 @Composable
 fun SetUpNavGraph(navController: NavHostController) {
-    fun navigateBottom(index: Int) {
+   /* fun navigateBottom(index: Int) {
         val destination = when (index) {
             0 -> AppDestination.Home
             1 -> AppDestination.Bible
@@ -24,7 +25,7 @@ fun SetUpNavGraph(navController: NavHostController) {
             launchSingleTop = true
             restoreState = true
         }
-    }
+    }*/
 
     NavHost(
         navController = navController,
@@ -37,6 +38,9 @@ fun SetUpNavGraph(navController: NavHostController) {
         }
         composable<AppDestination.Home> {
             HomeUI()
+        }
+        composable<AppDestination.Type> {
+            TypeUI()
         }
     }
 }
