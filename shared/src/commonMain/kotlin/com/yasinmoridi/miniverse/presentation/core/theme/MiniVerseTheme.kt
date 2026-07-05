@@ -9,7 +9,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.yasinmoridi.miniverse.utils.AppColor
 
-data class BibleColors(
+data class MiniVerseColors(
     val morningCardBg: Color,
     val eveningCardBg: Color,
     val primaryText: Color,
@@ -23,8 +23,8 @@ data class BibleColors(
     val morningIcon: Color
 )
 
-val LocalBibleColors = staticCompositionLocalOf {
-    BibleColors(
+val LocalMiniVerseColors = staticCompositionLocalOf {
+    MiniVerseColors(
         morningCardBg = Color.Unspecified,
         eveningCardBg = Color.Unspecified,
         primaryText = Color.Unspecified,
@@ -41,11 +41,11 @@ val LocalBibleColors = staticCompositionLocalOf {
 
 
 
-object BibleTheme {
-    val colors: BibleColors
+object MiniVerseTheme {
+    val colors: MiniVerseColors
         @Composable
         @ReadOnlyComposable
-        get() = LocalBibleColors.current
+        get() = LocalMiniVerseColors.current
 }
 
 private val LightColorScheme = lightColorScheme(
@@ -67,14 +67,14 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 @Composable
-fun BibleTheme(
+fun MiniVerseTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
     
-    val bibleColors = if (darkTheme) {
-        BibleColors(
+    val miniVerseColors = if (darkTheme) {
+        MiniVerseColors(
             morningCardBg = AppColor.YELLOW_DARK_BG,
             eveningCardBg = AppColor.PURPLE_DARK_BG,
             primaryText = AppColor.OFF_WHITE,
@@ -88,7 +88,7 @@ fun BibleTheme(
             morningIcon = AppColor.MORNING_ICON
         )
     } else {
-        BibleColors(
+        MiniVerseColors(
             morningCardBg = AppColor.YELLOW_LIGHT_BG,
             eveningCardBg = AppColor.PURPLE_LIGHT_BG,
             primaryText = AppColor.DEEP_NAVY,
@@ -105,7 +105,7 @@ fun BibleTheme(
 
 
 
-    CompositionLocalProvider(LocalBibleColors provides bibleColors) {
+    CompositionLocalProvider(LocalMiniVerseColors provides miniVerseColors) {
         MaterialTheme(
             colorScheme = colorScheme,
             content = content

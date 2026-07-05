@@ -12,7 +12,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.yasinmoridi.miniverse.presentation.core.theme.BibleTheme
+import com.yasinmoridi.miniverse.presentation.core.theme.MiniVerseTheme
 import com.yasinmoridi.miniverse.utils.AppColor
 
 @Composable
@@ -21,8 +21,8 @@ fun BottomNavBar(
     onNavigate: (Int) -> Unit
 ) {
     NavigationBar(
-        containerColor = BibleTheme.colors.quizCardBg,
-        contentColor = BibleTheme.colors.primaryText
+        containerColor = MiniVerseTheme.colors.quizCardBg,
+        contentColor = MiniVerseTheme.colors.primaryText
     ) {
         val items = listOf(
             Triple(Icons.Default.Home, "Home", 0),
@@ -40,8 +40,8 @@ fun BottomNavBar(
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = AppColor.YELLOW_600,
                     selectedTextColor = AppColor.YELLOW_600,
-                    unselectedIconColor = BibleTheme.colors.secondaryText,
-                    unselectedTextColor = BibleTheme.colors.secondaryText,
+                    unselectedIconColor = MiniVerseTheme.colors.secondaryText,
+                    unselectedTextColor = MiniVerseTheme.colors.secondaryText,
                     indicatorColor = Color.Transparent
                 )
             )

@@ -1,6 +1,6 @@
 package com.yasinmoridi.miniverse.di
 
-import com.yasinmoridi.miniverse.data.remote.BibleApi
+import com.yasinmoridi.miniverse.data.remote.MiniVerseApi
 import com.yasinmoridi.miniverse.presentation.feature.home.HomeVM
 import com.yasinmoridi.miniverse.presentation.feature.splash.SplashVM
 import org.koin.core.context.startKoin
@@ -9,8 +9,8 @@ import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
 val appModule = module {
-    single { BibleApi.createHttpClient() }
-    single { BibleApi(get()) }
+    single { MiniVerseApi.createHttpClient() }
+    single { MiniVerseApi(get()) }
 
     viewModelOf(::SplashVM)
     viewModelOf(::HomeVM)

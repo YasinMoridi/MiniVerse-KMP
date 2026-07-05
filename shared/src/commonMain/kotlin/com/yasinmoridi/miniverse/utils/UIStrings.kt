@@ -2,7 +2,7 @@ package com.yasinmoridi.miniverse.utils
 
 object UIStrings {
 
-    const val APP_NAME = "Bible App"
+    const val APP_NAME = "MiniVerse Game"
     const val START_YOUR_DAY_WITH_FAITH = "Start Your Day with Faith"
     const val BEGIN_YOUR_JOURNEY_WITH_GODS_WORD = "Begin your journey with God's Word. Find peace, guidance, and inspiration every day."
     const val CONTINUE = "Continue"
