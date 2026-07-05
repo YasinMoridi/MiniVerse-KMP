@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.core.navigation.AppDestination
 import com.yasinmoridi.miniverse.utils.AppColor
 import com.yasinmoridi.miniverse.utils.UIStrings
 import com.yasinmoridi.miniverse.utils.mouseDragScroll
@@ -96,19 +97,21 @@ fun HomeUI(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             items(games) { game ->
-                GameCard(game)
+                GameCard(game) {
+                    navController.navigate(AppDestination.GameInfo(game.name))
+                }
             }
         }
     }
 }
 
 @Composable
-fun GameCard(game: Game) {
+fun GameCard(game: Game, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .aspectRatio(0.75f)
             .fillMaxWidth()
-            .clickable { /* Launch Game */ },
+            .clickable { onClick() },
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(2.dp, AppColor.CARD_BORDER),
         colors = CardDefaults.cardColors(containerColor = Color.White)
