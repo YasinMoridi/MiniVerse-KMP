@@ -12,6 +12,10 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation(libs.kotlinx.coroutinesSwing)
 
+    //koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+
     implementation(libs.compose.uiToolingPreview)
 }
 

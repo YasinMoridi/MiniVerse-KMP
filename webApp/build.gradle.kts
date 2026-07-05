@@ -22,6 +22,10 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.shared)
 
+            //koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+
             implementation(libs.compose.ui)
         }
     }
