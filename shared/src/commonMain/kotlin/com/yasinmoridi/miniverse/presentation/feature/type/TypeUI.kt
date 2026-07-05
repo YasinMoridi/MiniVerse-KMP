@@ -38,13 +38,15 @@ fun TypeUI() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(GR_BG)
+            .background(GR_BG),
+        contentAlignment = Alignment.TopCenter
     ) {
-
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .widthIn(max = 600.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             Spacer(Modifier.height(60.dp))
 
             MultiPlayerHeader()
@@ -52,6 +54,7 @@ fun TypeUI() {
             Column(
                 modifier = Modifier
                     .weight(1f)
+                    .fillMaxWidth()
                     .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -101,11 +104,16 @@ fun TypeUI() {
         }
 
         // 🟢 BUTTON (ثابت پایین)
-        ShareWithFriendsButton(
+        Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 32.dp)
-        )
+                .fillMaxWidth()
+                .widthIn(max = 600.dp)
+                .padding(bottom = 32.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            ShareWithFriendsButton()
+        }
     }
 }
 

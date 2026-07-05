@@ -71,38 +71,43 @@ fun SplashUI(
         }
     }
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(GR_BG),
-        contentAlignment = Alignment.Center
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            MultiPlayerHeader(
+                content = {
+                    Spacer(modifier = Modifier.height(80.dp))
 
-        MultiPlayerHeader(
-            content = {
-
-                Spacer(modifier = Modifier.height(80.dp))
-
-                // Gradient circle
-                Box(
-                    modifier = Modifier
-                        .size(200.dp)
-                        .clip(CircleShape)
-                        .background(SPLASH_GR_CIRCLE),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        painter = painterResource(Res.drawable.img_sword),
-                        contentDescription = "Splash Image",
-                        modifier = Modifier.size(75.dp),
-                    )
+                    // Gradient circle
+                    Box(
+                        modifier = Modifier
+                            .size(200.dp)
+                            .clip(CircleShape)
+                            .background(SPLASH_GR_CIRCLE),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(Res.drawable.img_sword),
+                            contentDescription = "Splash Image",
+                            modifier = Modifier.size(75.dp),
+                        )
+                    }
                 }
-            }
-        )
+            )
+        }
 
         Box(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
                 .padding(bottom = 80.dp)
                 .width(280.dp)
                 .height(16.dp)
