@@ -74,8 +74,7 @@ fun MultiPlayerHeader(
         // Colorful bar
         SlantedColorfulBar()
 
-        Spacer(modifier = Modifier.height(100.dp))
-
+        Spacer(modifier = Modifier.height(20.dp))
 
         content()
     }

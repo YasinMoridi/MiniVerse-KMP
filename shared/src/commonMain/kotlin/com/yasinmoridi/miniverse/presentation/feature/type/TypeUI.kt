@@ -45,14 +45,9 @@ fun TypeUI() {
             modifier = Modifier.fillMaxSize()
         ) {
 
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                MultiPlayerHeader()
-            }
+            Spacer(Modifier.height(60.dp))
+
+            MultiPlayerHeader()
 
             Column(
                 modifier = Modifier
@@ -60,6 +55,8 @@ fun TypeUI() {
                     .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
+                Spacer(Modifier.height(30.dp))
 
                 PlayerOptionCard(
                     playerCount = 1,
@@ -118,83 +115,90 @@ fun PlayerOptionCard(
     text: String,
     badgeColor: Color,
     buttonColor: Color,
-    isLeftAligned: Boolean
+    isLeftAligned: Boolean,
 ) {
-
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = if (isLeftAligned) Alignment.CenterStart else Alignment.CenterEnd
     ) {
-
-        // CARD اصلی
+        // 🟢 Wrapper for Card and Badge to keep them perfectly aligned horizontally
         Box(
             modifier = Modifier
                 .width(280.dp)
-                .height(140.dp)
-                .offset(x = if (isLeftAligned) 30.dp else (-30).dp)
-                .clip(RoundedCornerShape(70.dp))
-                .background(Color(0xFF2E3B62))
+                .offset(x = if (isLeftAligned) 30.dp else (-30).dp),
+            contentAlignment = Alignment.TopCenter
         ) {
-
-            // خطوط تزئینی
-            Column(
-                modifier = Modifier
-                    .align(Alignment.TopCenter)
-                    .padding(top = 45.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Box(Modifier.width(35.dp).height(4.dp).background(Color.White.copy(alpha = 0.2f)))
-                    Box(Modifier.width(35.dp).height(4.dp).background(Color.White.copy(alpha = 0.2f)))
-                }
-                Spacer(Modifier.height(6.dp))
-                Box(Modifier.width(90.dp).height(4.dp).background(Color.White.copy(alpha = 0.2f)))
-            }
-
-            // دکمه پایین
+            // CARD اصلی
             Box(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(14.dp)
                     .fillMaxWidth()
-                    .height(52.dp)
-                    .clip(RoundedCornerShape(26.dp))
-                    .background(buttonColor),
+                    .height(140.dp)
+                    .clip(RoundedCornerShape(70.dp))
+                    .background(Color(0xFF2E3B62))
+            ) {
+                // خطوط تزئینی
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .padding(top = 45.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Box(
+                            Modifier.width(35.dp).height(4.dp)
+                                .background(Color.White.copy(alpha = 0.2f))
+                        )
+                        Box(
+                            Modifier.width(35.dp).height(4.dp)
+                                .background(Color.White.copy(alpha = 0.2f))
+                        )
+                    }
+                    Spacer(Modifier.height(6.dp))
+                    Box(Modifier.width(90.dp).height(4.dp).background(Color.White.copy(alpha = 0.2f)))
+                }
+
+                // دکمه پایین
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(bottom = 16.dp)
+                        .fillMaxWidth(0.8f) // کوچکتر کردن دکمه (قبلا fillMaxWidth بود)
+                        .height(50.dp)
+                        .clip(RoundedCornerShape(25.dp))
+                        .background(buttonColor),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = text,
+                        color = Color.White,
+                        fontWeight = FontWeight.Black,
+                        fontSize = 18.sp
+                    )
+                }
+            }
+
+            // 🔴 BADGE (نصف بیرون، نصف داخل) - اکنون نسبت به مرکز Wrapper تنظیم شده است
+            Box(
+                modifier = Modifier
+                    .offset(y = (-30).dp)
+                    .size(72.dp)
+                    .clip(CircleShape)
+                    .background(badgeColor),
                 contentAlignment = Alignment.Center
             ) {
+                Box(
+                    modifier = Modifier
+                        .size(54.dp)
+                        .clip(CircleShape)
+                        .background(Color.White.copy(alpha = 0.15f))
+                )
                 Text(
-                    text = text,
+                    text = playerCount.toString(),
                     color = Color.White,
-                    fontWeight = FontWeight.Black,
-                    fontSize = 20.sp
+                    fontSize = 34.sp,
+                    fontWeight = FontWeight.Black
                 )
             }
-        }
-
-        // 🔴 BADGE (نصف بیرون، نصف داخل)
-        Box(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .offset(y = (-20).dp) // 👈 نصف بیرون کارت
-                .size(72.dp)
-                .clip(CircleShape)
-                .background(badgeColor),
-            contentAlignment = Alignment.Center
-        ) {
-
-            Box(
-                modifier = Modifier
-                    .size(54.dp)
-                    .clip(CircleShape)
-                    .background(Color.White.copy(alpha = 0.15f))
-            )
-
-            Text(
-                text = playerCount.toString(),
-                color = Color.White,
-                fontSize = 34.sp,
-                fontWeight = FontWeight.Black
-            )
         }
     }
 }

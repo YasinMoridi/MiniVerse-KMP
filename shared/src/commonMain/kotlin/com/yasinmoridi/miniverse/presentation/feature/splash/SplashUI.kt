@@ -80,6 +80,9 @@ fun SplashUI(
 
         MultiPlayerHeader(
             content = {
+
+                Spacer(modifier = Modifier.height(80.dp))
+
                 // Gradient circle
                 Box(
                     modifier = Modifier
