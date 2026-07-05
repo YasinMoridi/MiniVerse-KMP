@@ -1,8 +1,43 @@
 package com.yasinmoridi.miniverse.utils
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 object AppColor {
+
+
+    //Names
+    val RED_NAME_APP = Color(0xFFD30000)
+    val BLUE_NAME_APP = Color(0xFF0004FF)
+    val GREEN_NAME_APP = Color(0xFF1BB632)
+    val YELLOW_NAME_APP = Color(0xFFFF7802)
+    val PINK_NAME_APP = Color(0xFFFF0EE7)
+
+    //Colorful bar
+
+    val RED_COLORFUL_BAR = Color(0xFFFF6B6B)
+    val BLUE_COLORFUL_BAR = Color(0xFF4A90E2)
+    val GREEN_COLORFUL_BAR = Color(0xFF7ED321)
+    val YELLOW_COLORFUL_BAR = Color(0xFFFF7802)
+    val ORANGE_COLORFUL_BAR = Color(0xFFF5C542)
+
+    //GR
+    val SPLASH_GR_BG = Brush.verticalGradient(
+        colors = listOf(
+            Color(0xFFE0D7FF),
+            Color(0xFFF3EEFF)
+        )
+    )
+    val SPLASH_GR_CIRCLE = Brush.linearGradient(
+        colors = listOf(
+            Color(0xFFFF9A9E),
+            Color(0xFFFAD0C4),
+            Color(0xFFA1C4FD),
+        ),
+        start = Offset(0f, 0f),
+        end = Offset(0f, Float.POSITIVE_INFINITY)
+    )
 
     // BACKGROUND
     val DARK_APP_BG = Color(0xFF0A182C)

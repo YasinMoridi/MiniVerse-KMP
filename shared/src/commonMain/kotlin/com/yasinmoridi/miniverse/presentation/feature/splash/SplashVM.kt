@@ -3,15 +3,14 @@ package com.yasinmoridi.miniverse.presentation.feature.splash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.milliseconds
 
 class SplashVM: ViewModel() {
 
-    private val _navigateToHome = MutableSharedFlow<Unit>()
-    val navigateToHome = _navigateToHome.asSharedFlow()
+    private val _isTimerFinished = MutableStateFlow(false)
+    val isTimerFinished = _isTimerFinished.asStateFlow()
 
     init {
         startTimer()
@@ -19,8 +18,8 @@ class SplashVM: ViewModel() {
 
     private fun startTimer() {
         viewModelScope.launch {
-            delay(3000L.milliseconds)
-            _navigateToHome.emit(Unit)
+            delay(5000L)
+            _isTimerFinished.value = true
         }
     }
 }
