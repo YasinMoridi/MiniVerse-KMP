@@ -8,7 +8,7 @@ sealed interface AppDestination {
     data object Splash : AppDestination
 
     @Serializable
-    data object Home : AppDestination
+    data class Home(val playerCount: Int) : AppDestination
 
     @Serializable
     data object Type : AppDestination

@@ -27,8 +27,8 @@ import com.yasinmoridi.miniverse.utils.AppColor.BLUE_NAME_APP
 import com.yasinmoridi.miniverse.utils.AppColor.GREEN_NAME_APP
 import com.yasinmoridi.miniverse.utils.AppColor.PINK_NAME_APP
 import com.yasinmoridi.miniverse.utils.AppColor.RED_NAME_APP
-import com.yasinmoridi.miniverse.utils.AppColor.SPLASH_GR_CIRCLE
 import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_NAME_APP
+import com.yasinmoridi.miniverse.utils.UIStrings
 import miniverse.shared.generated.resources.Res
 import miniverse.shared.generated.resources.img_sword
 import org.jetbrains.compose.resources.painterResource
@@ -50,7 +50,7 @@ fun MultiPlayerHeader(
                 YELLOW_NAME_APP,
                 PINK_NAME_APP
             )
-            "MULTI".forEachIndexed { index, char ->
+            UIStrings.MULTI.forEachIndexed { index, char ->
                 withStyle(style = SpanStyle(color = colors[index % colors.size])) {
                     append(char)
                 }
@@ -63,7 +63,7 @@ fun MultiPlayerHeader(
         )
 
         Text(
-            text = "PLAYER GAMES",
+            text = UIStrings.PLAYER_GAMES,
             fontSize = 36.sp,
             fontWeight = FontWeight.Black,
             color = Color.Black

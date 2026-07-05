@@ -18,20 +18,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.yasinmoridi.miniverse.presentation.components.MultiPlayerHeader
+import com.yasinmoridi.miniverse.presentation.core.navigation.AppDestination
 import com.yasinmoridi.miniverse.utils.AppColor
 import com.yasinmoridi.miniverse.utils.AppColor.BLUE_PLAYER_BDG
 import com.yasinmoridi.miniverse.utils.AppColor.BLUE_PLAYER_BTN
+import com.yasinmoridi.miniverse.utils.AppColor.DARK_NAVY
 import com.yasinmoridi.miniverse.utils.AppColor.GREEN_PLAYER_BDG
 import com.yasinmoridi.miniverse.utils.AppColor.GREEN_PLAYER_BTN
 import com.yasinmoridi.miniverse.utils.AppColor.GR_BG
+import com.yasinmoridi.miniverse.utils.AppColor.LINE_DECORATION
 import com.yasinmoridi.miniverse.utils.AppColor.RED_PLAYER_BDG
 import com.yasinmoridi.miniverse.utils.AppColor.RED_PLAYER_BTN
-import com.yasinmoridi.miniverse.utils.AppColor.Yello_PLAYER_BDG
-import com.yasinmoridi.miniverse.utils.AppColor.Yello_PLAYER_BTN
+import com.yasinmoridi.miniverse.utils.AppColor.SHARE_BTN_GREEN
+import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_PLAYER_BDG
+import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_PLAYER_BTN
+import com.yasinmoridi.miniverse.utils.UIStrings
 
 @Composable
-fun TypeUI() {
+fun TypeUI(navController: NavHostController) {
 
     val scrollState = rememberScrollState()
 
@@ -63,40 +69,44 @@ fun TypeUI() {
 
                 PlayerOptionCard(
                     playerCount = 1,
-                    text = "PLAYER",
+                    text = UIStrings.PLAYER,
                     badgeColor = RED_PLAYER_BDG,
                     buttonColor = RED_PLAYER_BTN,
-                    isLeftAligned = false
+                    isLeftAligned = false,
+                    onClick = { navController.navigate(AppDestination.Home(1)) }
                 )
 
                 Spacer(Modifier.height(40.dp))
 
                 PlayerOptionCard(
                     playerCount = 2,
-                    text = "PLAYERS",
+                    text = UIStrings.PLAYERS,
                     badgeColor = BLUE_PLAYER_BDG,
                     buttonColor = BLUE_PLAYER_BTN,
-                    isLeftAligned = true
+                    isLeftAligned = true,
+                    onClick = { navController.navigate(AppDestination.Home(2)) }
                 )
 
                 Spacer(Modifier.height(40.dp))
 
                 PlayerOptionCard(
                     playerCount = 3,
-                    text = "PLAYERS",
+                    text = UIStrings.PLAYERS,
                     badgeColor = GREEN_PLAYER_BDG,
                     buttonColor = GREEN_PLAYER_BTN,
-                    isLeftAligned = false
+                    isLeftAligned = false,
+                    onClick = { navController.navigate(AppDestination.Home(3)) }
                 )
 
                 Spacer(Modifier.height(40.dp))
 
                 PlayerOptionCard(
                     playerCount = 4,
-                    text = "PLAYERS",
-                    badgeColor = Yello_PLAYER_BDG,
-                    buttonColor = Yello_PLAYER_BTN,
-                    isLeftAligned = true
+                    text = UIStrings.PLAYERS,
+                    badgeColor = YELLOW_PLAYER_BDG,
+                    buttonColor = YELLOW_PLAYER_BTN,
+                    isLeftAligned = true,
+                    onClick = { navController.navigate(AppDestination.Home(4)) }
                 )
 
                 Spacer(modifier = Modifier.height(120.dp))
@@ -124,6 +134,7 @@ fun PlayerOptionCard(
     badgeColor: Color,
     buttonColor: Color,
     isLeftAligned: Boolean,
+    onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxWidth(),
@@ -137,51 +148,54 @@ fun PlayerOptionCard(
             contentAlignment = Alignment.TopCenter
         ) {
             // CARD اصلی
-            Box(
+            Surface(
+                onClick = onClick,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(140.dp)
-                    .clip(RoundedCornerShape(70.dp))
-                    .background(Color(0xFF2E3B62))
+                    .clip(RoundedCornerShape(70.dp)),
+                color = DARK_NAVY
             ) {
-                // خطوط تزئینی
-                Column(
-                    modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .padding(top = 45.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Box(
-                            Modifier.width(35.dp).height(4.dp)
-                                .background(Color.White.copy(alpha = 0.2f))
-                        )
-                        Box(
-                            Modifier.width(35.dp).height(4.dp)
-                                .background(Color.White.copy(alpha = 0.2f))
+                Box {
+                    // خطوط تزئینی
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.TopCenter)
+                            .padding(top = 45.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Box(
+                                Modifier.width(35.dp).height(4.dp)
+                                    .background(LINE_DECORATION)
+                            )
+                            Box(
+                                Modifier.width(35.dp).height(4.dp)
+                                    .background(LINE_DECORATION)
+                            )
+                        }
+                        Spacer(Modifier.height(6.dp))
+                        Box(Modifier.width(90.dp).height(4.dp).background(LINE_DECORATION))
+                    }
+
+                    // دکمه پایین (اکنون بخشی از کل کارت است اما بصری جدا می‌ماند)
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(bottom = 16.dp)
+                            .fillMaxWidth(0.8f)
+                            .height(50.dp)
+                            .clip(RoundedCornerShape(25.dp))
+                            .background(buttonColor),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = text,
+                            color = Color.White,
+                            fontWeight = FontWeight.Black,
+                            fontSize = 18.sp
                         )
                     }
-                    Spacer(Modifier.height(6.dp))
-                    Box(Modifier.width(90.dp).height(4.dp).background(Color.White.copy(alpha = 0.2f)))
-                }
-
-                // دکمه پایین
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(bottom = 16.dp)
-                        .fillMaxWidth(0.8f) // کوچکتر کردن دکمه (قبلا fillMaxWidth بود)
-                        .height(50.dp)
-                        .clip(RoundedCornerShape(25.dp))
-                        .background(buttonColor),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = text,
-                        color = Color.White,
-                        fontWeight = FontWeight.Black,
-                        fontSize = 18.sp
-                    )
                 }
             }
 
@@ -218,20 +232,20 @@ fun ShareWithFriendsButton(modifier: Modifier = Modifier) {
         modifier = modifier
             .fillMaxWidth(0.85f)
             .height(64.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1BB632)), // Bright Green
+        colors = ButtonDefaults.buttonColors(containerColor = SHARE_BTN_GREEN), // Bright Green
         shape = RoundedCornerShape(32.dp),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 imageVector = Icons.Default.Share,
-                contentDescription = "Share",
+                contentDescription = UIStrings.SHARE_WITH_FRIENDS,
                 tint = Color.White,
                 modifier = Modifier.size(28.dp)
             )
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                "SHARE WITH FRIENDS!",
+                UIStrings.SHARE_WITH_FRIENDS,
                 color = Color.White,
                 fontWeight = FontWeight.Black,
                 fontSize = 18.sp

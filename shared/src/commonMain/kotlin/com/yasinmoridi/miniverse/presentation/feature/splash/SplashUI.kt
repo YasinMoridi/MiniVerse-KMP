@@ -35,10 +35,13 @@ import com.yasinmoridi.miniverse.utils.AppColor.ORANGE_COLORFUL_BAR
 import com.yasinmoridi.miniverse.utils.AppColor.PINK_NAME_APP
 import com.yasinmoridi.miniverse.utils.AppColor.RED_COLORFUL_BAR
 import com.yasinmoridi.miniverse.utils.AppColor.RED_NAME_APP
+import com.yasinmoridi.miniverse.utils.AppColor.PROGRESS_BG
+import com.yasinmoridi.miniverse.utils.AppColor.PROGRESS_FILL
 import com.yasinmoridi.miniverse.utils.AppColor.GR_BG
 import com.yasinmoridi.miniverse.utils.AppColor.SPLASH_GR_CIRCLE
 import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_COLORFUL_BAR
 import com.yasinmoridi.miniverse.utils.AppColor.YELLOW_NAME_APP
+import com.yasinmoridi.miniverse.utils.UIStrings
 import miniverse.shared.generated.resources.Res
 import miniverse.shared.generated.resources.img_sword
 import org.jetbrains.compose.resources.painterResource
@@ -98,7 +101,7 @@ fun SplashUI(
                     ) {
                         Image(
                             painter = painterResource(Res.drawable.img_sword),
-                            contentDescription = "Splash Image",
+                            contentDescription = UIStrings.APP_NAME,
                             modifier = Modifier.size(75.dp),
                         )
                     }
@@ -112,14 +115,14 @@ fun SplashUI(
                 .width(280.dp)
                 .height(16.dp)
                 .clip(RoundedCornerShape(8.dp))
-                .background(Color(0xFFC4D1F5)),
+                .background(PROGRESS_BG),
         ) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth(progress)
                     .fillMaxHeight()
                     .clip(RoundedCornerShape(8.dp))
-                    .background(Color(0xFF536EAF))
+                    .background(PROGRESS_FILL)
             )
 
             Box(

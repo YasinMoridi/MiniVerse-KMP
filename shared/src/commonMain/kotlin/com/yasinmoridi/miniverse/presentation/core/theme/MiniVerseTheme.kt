@@ -7,39 +7,24 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.yasinmoridi.miniverse.utils.AppColor
 
 data class MiniVerseColors(
-    val morningCardBg: Color,
-    val eveningCardBg: Color,
     val primaryText: Color,
     val secondaryText: Color,
     val appBackground: Color,
-    val quizCardBg: Color,
     val border: Color,
-    val challengeBg: Color,
-    val card2: Color,
-    val morningBg: Color,
-    val morningIcon: Color
+    val cardBackground: Color
 )
 
 val LocalMiniVerseColors = staticCompositionLocalOf {
     MiniVerseColors(
-        morningCardBg = Color.Unspecified,
-        eveningCardBg = Color.Unspecified,
         primaryText = Color.Unspecified,
         secondaryText = Color.Unspecified,
         appBackground = Color.Unspecified,
-        quizCardBg = Color.Unspecified,
         border = Color.Unspecified,
-        challengeBg = Color.Unspecified,
-        card2 = Color.Unspecified,
-        morningBg = Color.Unspecified,
-        morningIcon = Color.Unspecified
+        cardBackground = Color.Unspecified
     )
 }
-
-
 
 object MiniVerseTheme {
     val colors: MiniVerseColors
@@ -49,21 +34,29 @@ object MiniVerseTheme {
 }
 
 private val LightColorScheme = lightColorScheme(
-    primary = AppColor.YELLOW_600,
-    background = AppColor.LIGHT_APP_BG,
-    surface = AppColor.LIGHT_APP_BG,
+    primary = Color(0xFF6750A4),
     onPrimary = Color.White,
-    onBackground = AppColor.DEEP_NAVY,
-    onSurface = AppColor.DEEP_NAVY
+    secondary = Color(0xFF625B71),
+    onSecondary = Color.White,
+    tertiary = Color(0xFF7D5260),
+    onTertiary = Color.White,
+    background = Color(0xFFFFFBFE),
+    onBackground = Color(0xFF1C1B1F),
+    surface = Color(0xFFFFFBFE),
+    onSurface = Color(0xFF1C1B1F)
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = AppColor.YELLOW_600,
-    background = AppColor.DARK_APP_BG,
-    surface = AppColor.DARK_APP_BG,
-    onPrimary = Color.White,
-    onBackground = AppColor.OFF_WHITE,
-    onSurface = AppColor.OFF_WHITE
+    primary = Color(0xFFD0BCFF),
+    onPrimary = Color(0xFF381E72),
+    secondary = Color(0xFFCCC2DC),
+    onSecondary = Color(0xFF332D41),
+    tertiary = Color(0xFFEFB8C8),
+    onTertiary = Color(0xFF492532),
+    background = Color(0xFF1C1B1F),
+    onBackground = Color(0xFFE6E1E5),
+    surface = Color(0xFF1C1B1F),
+    onSurface = Color(0xFFE6E1E5)
 )
 
 @Composable
@@ -75,35 +68,21 @@ fun MiniVerseTheme(
     
     val miniVerseColors = if (darkTheme) {
         MiniVerseColors(
-            morningCardBg = AppColor.YELLOW_DARK_BG,
-            eveningCardBg = AppColor.PURPLE_DARK_BG,
-            primaryText = AppColor.OFF_WHITE,
-            secondaryText = AppColor.SOFT_BLUE_GRAY,
-            appBackground = AppColor.DARK_APP_BG,
-            quizCardBg = AppColor.QUIZ_CARD_DARK,
-            border = AppColor.DARK_BORDER,
-            challengeBg = AppColor.DARK_CHALLENGE_BG,
-            card2 = AppColor.PURPLE_DARK_BG,
-            morningBg = AppColor.DARK_MORNING_BG,
-            morningIcon = AppColor.MORNING_ICON
+            primaryText = Color(0xFFE6E1E5),
+            secondaryText = Color(0xFF938F99),
+            appBackground = Color(0xFF1C1B1F),
+            border = Color(0xFF49454F),
+            cardBackground = Color(0xFF2B2930)
         )
     } else {
         MiniVerseColors(
-            morningCardBg = AppColor.YELLOW_LIGHT_BG,
-            eveningCardBg = AppColor.PURPLE_LIGHT_BG,
-            primaryText = AppColor.DEEP_NAVY,
-            secondaryText = AppColor.DARK_BLUE_GRAY,
-            appBackground = AppColor.LIGHT_APP_BG,
-            quizCardBg = AppColor.QUIZ_CARD_LIGHT,
-            border = AppColor.LIGHT_BORDER,
-            challengeBg = AppColor.LIGHT_CHALLENGE_BG,
-            card2 = AppColor.PURPLE_LIGHT_BG,
-            morningBg = AppColor.LIGHT_MORNING_BG,
-            morningIcon = AppColor.MORNING_ICON
+            primaryText = Color(0xFF1C1B1F),
+            secondaryText = Color(0xFF49454F),
+            appBackground = Color(0xFFFFFBFE),
+            border = Color(0xFFCAC4D0),
+            cardBackground = Color.White
         )
     }
-
-
 
     CompositionLocalProvider(LocalMiniVerseColors provides miniVerseColors) {
         MaterialTheme(
