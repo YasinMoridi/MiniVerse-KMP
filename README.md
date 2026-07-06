@@ -105,17 +105,15 @@ This project is equipped with GitHub Actions for automated building of all platf
 
 ## 📱 Screenshots | اسکرین‌شات‌ها
 
-<!--
 <table style="width:100%">
   <tr>
-    <th>Player Selection</th>
-    <th>Game Mode</th> 
-    <th>Settings</th> 
+    <th>Home Screen</th>
+    <th>Game Board</th> 
+    <th>Select Game</th> 
   </tr>
   <tr>
-    <td><img src="screenshot/player_selection.png" width=240/></td> 
-    <td><img src="screenshot/game_mode.png" width=240/></td>
-    <td><img src="screenshot/settings.png" width=240/></td>
+    <td><img src="screenshot/home.png" width=240/></td> 
+    <td><img src="screenshot/game_board.png" width=240/></td>
+    <td><img src="screenshot/selet_game.png" width=240/></td>
   </tr>
 </table>
--->
