@@ -14,6 +14,7 @@ import com.yasinmoridi.miniverse.presentation.feature.minesweeper.MinesweeperUI
 import com.yasinmoridi.miniverse.presentation.feature.othello.OthelloUI
 import com.yasinmoridi.miniverse.presentation.feature.methello.MethelloUI
 import com.yasinmoridi.miniverse.presentation.feature.snake_bite.SnakeBiteUI
+import com.yasinmoridi.miniverse.presentation.feature.avoid_the_blocks.AvoidTheBlocksUI
 import com.yasinmoridi.miniverse.presentation.feature.settings.SettingsUI
 import com.yasinmoridi.miniverse.presentation.feature.splash.SplashUI
 import com.yasinmoridi.miniverse.presentation.feature.type.TypeUI
@@ -61,6 +62,10 @@ fun SetUpNavGraph(navController: NavHostController) {
         composable<AppDestination.SnakeBite> {
             val args = it.toRoute<AppDestination.SnakeBite>()
             SnakeBiteUI(playerCount = args.playerCount, navController = navController)
+        }
+        composable<AppDestination.AvoidTheBlocks> {
+            val args = it.toRoute<AppDestination.AvoidTheBlocks>()
+            AvoidTheBlocksUI(playerCount = args.playerCount, navController = navController)
         }
     }
 }

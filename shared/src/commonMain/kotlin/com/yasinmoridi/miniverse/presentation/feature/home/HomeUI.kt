@@ -56,6 +56,7 @@ fun HomeUI(
             Game(UIStrings.OTHELLO, Color(0xFF2E6B2A), listOf(1, 2)),
             Game(UIStrings.METHELLO, Color(0xFF6B2E2A), listOf(1, 2)),
             Game(UIStrings.SNAKE_BITE, AppColor.CARD_TEXT_BOX_GREEN, listOf(1, 2)),
+            Game(UIStrings.AVOID_THE_BLOCKS, AppColor.CARD_TEXT_BOX_RED, listOf(1)),
         )
     }
 

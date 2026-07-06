@@ -33,6 +33,9 @@ sealed interface AppDestination {
 
     @Serializable
     data class SnakeBite(val playerCount: Int) : AppDestination
+
+    @Serializable
+    data class AvoidTheBlocks(val playerCount: Int) : AppDestination
 }
 
 

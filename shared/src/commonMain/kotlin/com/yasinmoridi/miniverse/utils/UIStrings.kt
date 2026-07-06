@@ -28,7 +28,7 @@ object UIStrings {
     val TAP_COUNTER get() = if (isEn) "TAP COUNTER" else "تپ کانتر"
     val GUESS_THE_NUMBER get() = if (isEn) "GUESS THE NUMBER" else "حدس عدد"
     val SNAKE_BITE get() = if (isEn) "SNAKE BITE" else "مار بازی"
-    val AVOID_THE_BLOCKS get() = if (isEn) "AVOID THE BLOCKS" else "دوری از بلوک‌ها"
+    val AVOID_THE_BLOCKS get() = if (isEn) "AVOID THE BLOCKS(Demo)" else "دوری از بلوک‌ها (دمو)"
     val QUIZ_MANIA get() = if (isEn) "QUIZ MANIA" else "کویز"
     val WORD_SCRAMBLE get() = if (isEn) "WORD SCRAMBLE" else "کلمات درهم"
     val BRICK_BREAKER get() = if (isEn) "BRICK BREAKER" else "آجر شکن"

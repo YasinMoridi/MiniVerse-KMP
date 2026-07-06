@@ -191,6 +191,9 @@ fun GameInfoUI(
                         UIStrings.SNAKE_BITE -> {
                             navController.navigate(AppDestination.SnakeBite(playerCount))
                         }
+                        UIStrings.AVOID_THE_BLOCKS -> {
+                            navController.navigate(AppDestination.AvoidTheBlocks(playerCount))
+                        }
                     }
                 },
                 modifier = Modifier
