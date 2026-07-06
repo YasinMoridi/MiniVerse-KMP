@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,13 +9,22 @@ plugins {
 
 kotlin {
     js {
-        browser()
+        @OptIn(ExperimentalDistributionDsl::class)
+        browser {
+            commonWebpackConfig {
+                outputFileName = "miniverse.js"
+            }
+        }
         binaries.executable()
     }
 
-    @OptIn(ExperimentalWasmDsl::class)
+    @OptIn(ExperimentalWasmDsl::class, ExperimentalDistributionDsl::class)
     wasmJs {
-        browser()
+        browser {
+            commonWebpackConfig {
+                outputFileName = "miniverse-wasm.js"
+            }
+        }
         binaries.executable()
     }
 

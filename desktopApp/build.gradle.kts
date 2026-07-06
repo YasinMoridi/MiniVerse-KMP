@@ -25,8 +25,24 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.yasinmoridi.miniverse"
+            packageName = "MiniVerse"
             packageVersion = "1.0.0"
+            description = "MiniVerse Gaming Hub"
+            copyright = "© 2024 Yasin Moridi"
+            vendor = "Yasin Moridi"
+
+            windows {
+                menu = true
+                // iconFile.set(project.file("icons/icon.ico")) 
+            }
+            macOS {
+                bundleID = "com.yasinmoridi.miniverse"
+            }
+            linux {
+                shortcut = true
+            }
         }
+
+        jvmArgs("-Xmx2G", "-XX:+UseG1GC")
     }
 }

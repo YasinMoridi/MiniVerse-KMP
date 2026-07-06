@@ -26,26 +26,31 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 | 🧭 Navigation              | [Compose Navigation (JetBrains)](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation.html) |
 | 🔄 Coroutines              | [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines)                                         |
 
-## 🚀 Running the App
+## 🚀 Development & Deployment
 
-### Android
-```bash
-./gradlew :androidApp:assembleDebug
-```
+### 🛠 Development Run
+| Platform | Command |
+| :--- | :--- |
+| **Android** | `./gradlew :androidApp:installDebug` |
+| **Desktop** | `./gradlew :desktopApp:run` |
+| **Web (Wasm)** | `./gradlew :webApp:wasmJsBrowserDevelopmentRun` |
+| **Web (JS)** | `./gradlew :webApp:jsBrowserDevelopmentRun` |
+| **iOS** | Open `iosApp` in Xcode and Run |
 
-### Desktop (JVM)
-- **Standard Run:** `./gradlew :desktopApp:run`
+### 📦 Production Build (Release)
+| Platform | Build Command | Output Format |
+| :--- | :--- | :--- |
+| **Android** | `./gradlew :androidApp:assembleRelease` | `.apk` (Signed) |
+| **Windows** | `./gradlew :desktopApp:packageMsi` | `.msi` |
+| **macOS** | `./gradlew :desktopApp:packageDmg` | `.dmg` |
+| **Linux** | `./gradlew :desktopApp:packageDeb` | `.deb` |
+| **Web (Wasm)** | `./gradlew :webApp:wasmJsBrowserProductionLibraryDistribution` | Static Files |
+| **Web (JS)** | `./gradlew :webApp:jsBrowserProductionLibraryDistribution` | Static Files |
+| **iOS** | `./gradlew :shared:linkReleaseFrameworkIosArm64` | `.framework` |
 
-### Web
-- **Wasm Target:** `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
-- **JS Target:** `./gradlew :webApp:jsBrowserDevelopmentRun`
-
-### iOS
-Open the `iosApp` directory in Xcode and run the project.
-
-<!--
 ## 📱 Screenshots
 
+<!--
 <table style="width:100%">
   <tr>
     <th>Player Selection</th>
