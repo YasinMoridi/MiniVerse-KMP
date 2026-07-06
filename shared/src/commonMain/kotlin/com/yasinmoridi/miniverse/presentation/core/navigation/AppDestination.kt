@@ -30,6 +30,9 @@ sealed interface AppDestination {
 
     @Serializable
     data class Methello(val playerCount: Int) : AppDestination
+
+    @Serializable
+    data class SnakeBite(val playerCount: Int) : AppDestination
 }
 
 

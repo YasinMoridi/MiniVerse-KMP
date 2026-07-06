@@ -188,6 +188,9 @@ fun GameInfoUI(
                         UIStrings.METHELLO -> {
                             navController.navigate(AppDestination.Methello(playerCount))
                         }
+                        UIStrings.SNAKE_BITE -> {
+                            navController.navigate(AppDestination.SnakeBite(playerCount))
+                        }
                     }
                 },
                 modifier = Modifier
