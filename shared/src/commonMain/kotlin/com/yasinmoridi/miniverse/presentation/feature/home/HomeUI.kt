@@ -52,7 +52,7 @@ fun HomeUI(
     val allGames = remember {
         listOf(
             Game(UIStrings.TIC_TAC_TOE, AppColor.CARD_TEXT_BOX_CYAN, listOf(1, 2)),
-            // Add other games here in the future with their supported counts
+            Game(UIStrings.MINESWEEPER, AppColor.CARD_TEXT_BOX_ORANGE, listOf(1)),
         )
     }
 

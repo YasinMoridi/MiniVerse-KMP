@@ -4,6 +4,7 @@ import com.yasinmoridi.miniverse.data.remote.MiniVerseApi
 import com.yasinmoridi.miniverse.presentation.feature.home.HomeVM
 import com.yasinmoridi.miniverse.presentation.feature.splash.SplashVM
 import com.yasinmoridi.miniverse.presentation.feature.tic_tac_toe.TicTacToeVM
+import com.yasinmoridi.miniverse.presentation.feature.minesweeper.MinesweeperVM
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.KoinAppDeclaration
@@ -16,6 +17,7 @@ val appModule = module {
     viewModelOf(::SplashVM)
     viewModelOf(::HomeVM)
     viewModelOf(::TicTacToeVM)
+    viewModelOf(::MinesweeperVM)
 }
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =

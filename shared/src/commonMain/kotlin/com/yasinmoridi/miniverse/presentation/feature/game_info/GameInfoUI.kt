@@ -46,6 +46,7 @@ fun GameInfoUI(
         UIStrings.BRICK_BREAKER -> AppColor.CARD_TEXT_BOX_GRAY
         UIStrings.CATCH_THE_OBJECT -> AppColor.CARD_TEXT_BOX_YELLOW
         UIStrings.TIC_TAC_TOE -> Color(0xFF534BAE)
+        UIStrings.MINESWEEPER -> AppColor.CARD_TEXT_BOX_ORANGE
         else -> AppColor.CARD_TEXT_BOX_CYAN
     }
 
@@ -172,8 +173,13 @@ fun GameInfoUI(
             // Play Button
             Button(
                 onClick = {
-                    if (gameName == UIStrings.TIC_TAC_TOE) {
-                        navController.navigate(AppDestination.TicTacToe(playerCount))
+                    when (gameName) {
+                        UIStrings.TIC_TAC_TOE -> {
+                            navController.navigate(AppDestination.TicTacToe(playerCount))
+                        }
+                        UIStrings.MINESWEEPER -> {
+                            navController.navigate(AppDestination.Minesweeper)
+                        }
                     }
                 },
                 modifier = Modifier

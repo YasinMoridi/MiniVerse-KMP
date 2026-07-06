@@ -21,6 +21,9 @@ sealed interface AppDestination {
 
     @Serializable
     data class TicTacToe(val playerCount: Int) : AppDestination
+
+    @Serializable
+    data object Minesweeper : AppDestination
 }
 
 
