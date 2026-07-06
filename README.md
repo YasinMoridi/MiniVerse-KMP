@@ -114,6 +114,6 @@ This project is equipped with GitHub Actions for automated building of all platf
   <tr>
     <td><img src="screenshot/home.png" width=240/></td> 
     <td><img src="screenshot/game_board.png" width=240/></td>
-    <td><img src="screenshot/selet_game.png" width=240/></td>
+    <td><img src="screenshot/select_game.png" width=240/></td>
   </tr>
 </table>
