@@ -44,9 +44,20 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 | **Windows** | `./gradlew :desktopApp:packageMsi` | `.msi` |
 | **macOS** | `./gradlew :desktopApp:packageDmg` | `.dmg` |
 | **Linux** | `./gradlew :desktopApp:packageDeb` | `.deb` |
-| **Web (Wasm)** | `./gradlew :webApp:wasmJsBrowserProductionLibraryDistribution` | Static Files |
-| **Web (JS)** | `./gradlew :webApp:jsBrowserProductionLibraryDistribution` | Static Files |
+| **Web (Wasm)** | `./gradlew :webApp:wasmJsBrowserDistribution` | Static Files |
+| **Web (JS)** | `./gradlew :webApp:jsBrowserDistribution` | Static Files |
 | **iOS** | `./gradlew :shared:linkReleaseFrameworkIosArm64` | `.framework` |
+
+### 📂 Build Artifacts Location
+| Platform | Output Path |
+| :--- | :--- |
+| **Android** | `androidApp/build/outputs/apk/release/` |
+| **Windows** | `desktopApp/build/compose/binaries/main/msi/` |
+| **macOS** | `desktopApp/build/compose/binaries/main/dmg/` |
+| **Linux** | `desktopApp/build/compose/binaries/main/deb/` |
+| **Web (Wasm)** | `webApp/build/dist/wasmJs/productionExecutable/` |
+| **Web (JS)** | `webApp/build/dist/js/productionExecutable/` |
+| **iOS** | `shared/build/bin/iosArm64/releaseFramework/` |
 
 ## 📱 Screenshots
 
