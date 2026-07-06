@@ -161,7 +161,6 @@ fun SettingsUI(navController: NavHostController) {
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-
                         Text(
                             text = UIStrings.SOUND,
                             fontSize = 20.sp,
@@ -173,6 +172,39 @@ fun SettingsUI(navController: NavHostController) {
                             checked = soundEnabled,
                             onCheckedChange = { soundEnabled = it }
                         )
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = UIStrings.LANGUAGE,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Black,
+                            color = AppColor.DARK_NAVY
+                        )
+
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            TextButton(onClick = { UIStrings.language = com.yasinmoridi.miniverse.utils.AppLanguage.ENGLISH }) {
+                                Text(
+                                    text = UIStrings.ENGLISH,
+                                    fontWeight = if (UIStrings.language == com.yasinmoridi.miniverse.utils.AppLanguage.ENGLISH) FontWeight.Black else FontWeight.Normal,
+                                    color = if (UIStrings.language == com.yasinmoridi.miniverse.utils.AppLanguage.ENGLISH) AppColor.DARK_NAVY else Color.Gray
+                                )
+                            }
+                            Text("/", color = Color.Gray)
+                            TextButton(onClick = { UIStrings.language = com.yasinmoridi.miniverse.utils.AppLanguage.PERSIAN }) {
+                                Text(
+                                    text = UIStrings.PERSIAN,
+                                    fontWeight = if (UIStrings.language == com.yasinmoridi.miniverse.utils.AppLanguage.PERSIAN) FontWeight.Black else FontWeight.Normal,
+                                    color = if (UIStrings.language == com.yasinmoridi.miniverse.utils.AppLanguage.PERSIAN) AppColor.DARK_NAVY else Color.Gray
+                                )
+                            }
+                        }
                     }
                     
                     Spacer(modifier = Modifier.height(32.dp))

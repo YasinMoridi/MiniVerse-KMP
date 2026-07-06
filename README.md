@@ -1,4 +1,10 @@
-# 🌌 MiniVerse
+# 🌌 MiniVerse | مینی‌ورس
+
+[English](#english) | [فارسی](#فارسی)
+
+---
+
+## English
 
 ## 📜 Description  
 **MiniVerse** is a modern, cross-platform gaming hub designed to provide a seamless and engaging experience for solo and multiplayer mini-games.  
@@ -13,6 +19,7 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 - ⚙️ **Customizable Settings:** Easy navigation to app settings and configurations.
 - 📲 **Social Sharing:** Built-in sharing functionality to invite friends to the MiniVerse.
 - 🚀 **Smooth UX:** Optimized scrolling and drag interactions for a premium feel.
+- 🌐 **Multilingual:** Supports both English and Persian (Farsi) with RTL support.
 
 ## 🛠 Built With
 
@@ -26,9 +33,42 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 | 🧭 Navigation              | [Compose Navigation (JetBrains)](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation.html) |
 | 🔄 Coroutines              | [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines)                                         |
 
-## 🚀 Development & Deployment
+---
 
-### 🛠 Development Run
+## فارسی
+
+## 📜 توضیحات  
+**مینی‌ورس (MiniVerse)** یک هاب بازی مدرن و چند پلتفرمه است که برای ارائه تجربه‌ای روان و جذاب برای بازی‌های کوچک تک‌نفره و چندنفره طراحی شده است.  
+این برنامه با استفاده از **Kotlin Multiplatform (KMP)** و **Compose Multiplatform** ساخته شده و به صورت بومی روی **اندروید، iOS، دسکتاپ (ویندوز/مک/لینوکس) و وب** اجرا می‌شود.  
+این پروژه از شیوه‌های مدرن توسعه اندروید پیروی می‌کند و از **Material 3** برای رابط کاربری پویا و **Koin** برای تزریق وابستگی استفاده می‌کند تا کدبیسی مقیاس‌پذیر و قابل نگهداری داشته باشد.
+
+## ✨ ویژگی‌ها
+- 🌍 **چند پلتفرمه:** کدبیس واحد برای اندروید، iOS، دسکتاپ و وب.
+- 🎮 **تمرکز بر چندنفره:** پشتیبانی از ۱ تا ۴ بازیکن با رابط کاربری اختصاصی انتخاب بازیکن.
+- 🕹️ **هاب بازی‌های کوچک:** مکانی مرکزی برای کشف و انجام بازی‌های کوچک مختلف.
+- 🎨 **رابط کاربری متریال ۳:** طراحی مدرن و پاسخگو با زیبایی‌شناسی سفارشی شده برای بازیکنان.
+- ⚙️ **تنظیمات قابل شخصی‌سازی:** ناوبری آسان به تنظیمات و پیکربندی‌های برنامه.
+- 📲 **اشتراک‌گذاری اجتماعی:** قابلیت داخلی اشتراک‌گذاری برای دعوت دوستان به مینی‌ورس.
+- 🚀 **تجربه کاربری روان:** بهینه‌سازی شده برای اسکرول و تعاملات درگ (Drag) برای حس بهتر.
+- 🌐 **دوزبانه:** پشتیبانی از هر دو زبان انگلیسی و فارسی با پشتیبانی کامل از راست‌چین (RTL).
+
+## 🛠 ساخته شده با
+
+| دسته‌بندی | تکنولوژی |
+| :--- | :--- |
+| 🏛 معماری | Kotlin Multiplatform (KMP) |
+| 🖼️ فریم‌ورک UI | [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform) (Material 3) |
+| 🛠️ تزریق وابستگی | [Koin](https://insert-koin.io/) |
+| 🌐 شبکه | [Ktor](https://ktor.io/) |
+| 📜 سریال‌سازی | [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) |
+| 🧭 ناوبری | [Compose Navigation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation.html) |
+| 🔄 کوروتین‌ها | [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines) |
+
+---
+
+## 🚀 Development & Deployment | توسعه و استقرار
+
+### 🛠 Development Run | اجرای توسعه
 | Platform | Command |
 | :--- | :--- |
 | **Android** | `./gradlew :androidApp:installDebug` |
@@ -37,7 +77,7 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 | **Web (JS)** | `./gradlew :webApp:jsBrowserDevelopmentRun` |
 | **iOS** | Open `iosApp` in Xcode and Run |
 
-### 📦 Production Build (Release)
+### 📦 Production Build (Release) | ساخت نسخه نهایی
 | Platform | Build Command | Output Format |
 | :--- | :--- | :--- |
 | **Android** | `./gradlew :androidApp:assembleRelease` | `.apk` (Signed) |
@@ -48,7 +88,7 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 | **Web (JS)** | `./gradlew :webApp:jsBrowserDistribution` | Static Files |
 | **iOS** | `./gradlew :shared:linkReleaseFrameworkIosArm64` | `.framework` |
 
-### 📂 Build Artifacts Location
+### 📂 Build Artifacts Location | محل فایل‌های خروجی
 | Platform | Output Path |
 | :--- | :--- |
 | **Android** | `androidApp/build/outputs/apk/release/` |
@@ -59,24 +99,11 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 | **Web (JS)** | `webApp/build/dist/js/productionExecutable/` |
 | **iOS** | `shared/build/bin/iosArm64/releaseFramework/` |
 
-### 🤖 Automated CI/CD (GitHub Actions)
-This project is equipped with GitHub Actions for automated building of all platforms, including macOS and iOS, which would otherwise require a Mac computer.
+### 🤖 Automated CI/CD (GitHub Actions) | خودکارسازی
+This project is equipped with GitHub Actions for automated building of all platforms.
+این پروژه به گیت‌هاب اکشنز برای ساخت خودکار تمامی پلتفرم‌ها مجهز شده است.
 
-#### 🛠️ Setup GitHub Secrets
-To enable the automated Android build (Signed APK), you must add the following secrets to your GitHub repository:
-1. Go to **Settings** > **Secrets and variables** > **Actions**.
-2. Click **New repository secret** and add:
-   - `RELEASE_STORE_PASSWORD`: Your Keystore password.
-   - `RELEASE_KEY_ALIAS`: Your Key alias (e.g., `miniverse-alias`).
-   - `RELEASE_KEY_PASSWORD`: Your Key password.
-
-#### 📥 How to get the builds
-1. Every time you **push** your code to the `main` or `master` branch, a build will start automatically.
-2. Go to the **Actions** tab in your GitHub repository.
-3. Select the latest workflow run.
-4. Once completed, scroll down to the **Artifacts** section to download the builds for Android, Windows, macOS, Linux, and Web.
-
-## 📱 Screenshots
+## 📱 Screenshots | اسکرین‌شات‌ها
 
 <!--
 <table style="width:100%">
