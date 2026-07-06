@@ -1,5 +1,7 @@
 package com.yasinmoridi.miniverse.presentation.feature.snake_bite
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,7 +18,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
@@ -24,6 +29,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.components.GameOverPopup
 import com.yasinmoridi.miniverse.utils.AppColor
 import com.yasinmoridi.miniverse.utils.UIStrings
 import kotlinx.coroutines.delay
@@ -33,65 +39,33 @@ import miniverse.shared.generated.resources.img_bomb
 import miniverse.shared.generated.resources.img_snake_head
 import miniverse.shared.generated.resources.img_sword
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.milliseconds
-
-enum class Direction {
-    UP, DOWN, LEFT, RIGHT
-}
-
-data class Point(val x: Int, val y: Int)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SnakeBiteUI(
     playerCount: Int,
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: SnakeBiteVM = koinViewModel()
 ) {
-    val gridSize = 20
-    var snake by remember { mutableStateOf(listOf(Point(10, 10), Point(10, 11), Point(10, 12))) }
-    var food by remember { mutableStateOf(Point(5, 5)) }
-    var bomb by remember { mutableStateOf(Point(15, 15)) }
-    var direction by remember { mutableStateOf(Direction.UP) }
-    var score by remember { mutableStateOf(0) }
-    var isGameOver by remember { mutableStateOf(false) }
+    val state by viewModel.state.collectAsState()
+    val gridSize = state.gridSize
 
-    // Game loop
-    LaunchedEffect(isGameOver) {
-        while (!isGameOver) {
-            delay(200.milliseconds)
-            val head = snake.first()
-            val newHead = when (direction) {
-                Direction.UP -> Point(head.x, head.y - 1)
-                Direction.DOWN -> Point(head.x, head.y + 1)
-                Direction.LEFT -> Point(head.x - 1, head.y)
-                Direction.RIGHT -> Point(head.x + 1, head.y)
-            }
-
-            // Check collisions
-            if (newHead.x !in 0..<gridSize || newHead.y < 0 || newHead.y >= gridSize || newHead in snake) {
-                isGameOver = true
-                break
-            }
-
-            if (newHead == bomb) {
-                isGameOver = true
-                break
-            }
-
-            if (newHead == food) {
-                score++
-                snake = listOf(newHead) + snake
-                food = Point(Random.nextInt(gridSize), Random.nextInt(gridSize))
-                bomb = Point(Random.nextInt(gridSize), Random.nextInt(gridSize))
-            } else {
-                snake = listOf(newHead) + snake.dropLast(1)
-            }
-        }
-    }
+    // Animation for food pulsing
+    val infiniteTransition = rememberInfiniteTransition()
+    val foodScale by infiniteTransition.animateFloat(
+        initialValue = 0.8f,
+        targetValue = 1.1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(500, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
 
     Scaffold(
-        containerColor = Color(0xFFC8E6C9), // Light green background
+        containerColor = Color(0xFFF1F8E9), // Softer light green
         topBar = {
             TopAppBar(
                 title = {
@@ -131,44 +105,66 @@ fun SnakeBiteUI(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
-                .pointerInput(Unit) {
-                    detectDragGestures { change, dragAmount ->
-                        change.consume()
-                        val (x, y) = dragAmount
-                        if (kotlin.math.abs(x) > kotlin.math.abs(y)) {
-                            if (x > 0 && direction != Direction.LEFT) direction = Direction.RIGHT
-                            else if (x < 0 && direction != Direction.RIGHT) direction = Direction.LEFT
-                        } else {
-                            if (y > 0 && direction != Direction.UP) direction = Direction.DOWN
-                            else if (y < 0 && direction != Direction.DOWN) direction = Direction.UP
-                        }
-                    }
-                },
+                .padding(padding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            // Score Display with scale animation
+            val scoreScale by animateFloatAsState(
+                targetValue = 1f + (state.score % 10 * 0.05f),
+                animationSpec = spring(stiffness = Spring.StiffnessLow)
+            )
+
+            Text(
+                text = "Score: ${state.score}",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.ExtraBold,
+                color = Color(0xFF2E7D32),
+                modifier = Modifier
+                    .padding(vertical = 16.dp)
+                    .scale(scoreScale)
+            )
+
             BoxWithConstraints(
                 modifier = Modifier
                     .weight(1f)
                     .aspectRatio(1f)
                     .padding(16.dp)
-                    .background(Color(0xFF2E7D32).copy(alpha = 0.8f), RoundedCornerShape(8.dp))
-                    .border(2.dp, Color(0xFF1B5E20), RoundedCornerShape(8.dp))
+                    .shadow(8.dp, RoundedCornerShape(12.dp))
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(Color(0xFF388E3C), Color(0xFF2E7D32))
+                        ),
+                        RoundedCornerShape(12.dp)
+                    )
+                    .border(3.dp, Color(0xFF1B5E20), RoundedCornerShape(12.dp))
+                    .pointerInput(Unit) {
+                        detectDragGestures { change, dragAmount ->
+                            change.consume()
+                            val (x, y) = dragAmount
+                            if (kotlin.math.abs(x) > kotlin.math.abs(y)) {
+                                if (x > 0) viewModel.changeDirection(Direction.RIGHT)
+                                else if (x < 0) viewModel.changeDirection(Direction.LEFT)
+                            } else {
+                                if (y > 0) viewModel.changeDirection(Direction.DOWN)
+                                else if (y < 0) viewModel.changeDirection(Direction.UP)
+                            }
+                        }
+                    }
             ) {
                 val tileSize = maxWidth / gridSize
                 
-                // Draw Grid
+                // Draw Grid (Subtle)
                 Canvas(modifier = Modifier.fillMaxSize()) {
-                    val strokeWidth = 1.dp.toPx()
+                    val strokeWidth = 0.5.dp.toPx()
                     for (i in 0..gridSize) {
                         drawLine(
-                            color = Color.White.copy(alpha = 0.1f),
+                            color = Color.White.copy(alpha = 0.05f),
                             start = Offset(i * tileSize.toPx(), 0f),
                             end = Offset(i * tileSize.toPx(), size.height),
                             strokeWidth = strokeWidth
                         )
                         drawLine(
-                            color = Color.White.copy(alpha = 0.1f),
+                            color = Color.White.copy(alpha = 0.05f),
                             start = Offset(0f, i * tileSize.toPx()),
                             end = Offset(size.width, i * tileSize.toPx()),
                             strokeWidth = strokeWidth
@@ -176,17 +172,19 @@ fun SnakeBiteUI(
                     }
                 }
 
-                // Food (Apple)
-                GameElement(point = food, tileSize = tileSize) {
+                // Food (Pulsing)
+                GameElement(point = state.food, tileSize = tileSize) {
                     Image(
                         painter = painterResource(Res.drawable.img_apple),
                         contentDescription = null,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .scale(foodScale)
                     )
                 }
 
                 // Bomb
-                GameElement(point = bomb, tileSize = tileSize) {
+                GameElement(point = state.bomb, tileSize = tileSize) {
                     Image(
                         painter = painterResource(Res.drawable.img_bomb),
                         contentDescription = null,
@@ -194,12 +192,28 @@ fun SnakeBiteUI(
                     )
                 }
 
-                // Snake
-                snake.forEachIndexed { index, point ->
+                // Snake with smooth movement animation
+                state.snake.forEachIndexed { index, point ->
                     val isHead = index == 0
-                    GameElement(
-                        point = point,
-                        tileSize = tileSize
+                    
+                    val animatedX by animateFloatAsState(
+                        targetValue = point.x.toFloat(),
+                        animationSpec = tween(durationMillis = state.gameSpeed.toInt(), easing = LinearEasing)
+                    )
+                    val animatedY by animateFloatAsState(
+                        targetValue = point.y.toFloat(),
+                        animationSpec = tween(durationMillis = state.gameSpeed.toInt(), easing = LinearEasing)
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .offset { 
+                                IntOffset(
+                                    (animatedX * tileSize.toPx()).toInt(), 
+                                    (animatedY * tileSize.toPx()).toInt()
+                                ) 
+                            }
+                            .size(tileSize)
                     ) {
                         if (isHead) {
                             Image(
@@ -211,35 +225,27 @@ fun SnakeBiteUI(
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
-                                    .padding(1.dp)
-                                    .background(Color(0xFF81C784), RoundedCornerShape(4.dp))
-                                    .border(1.dp, Color(0xFF4CAF50), RoundedCornerShape(4.dp))
+                                    .padding(2.dp)
+                                    .background(
+                                        Color(0xFF81C784),
+                                        RoundedCornerShape((tileSize / 4).value.dp)
+                                    )
+                                    .border(1.dp, Color(0xFF4CAF50), RoundedCornerShape((tileSize / 4).value.dp))
                             )
                         }
                     }
                 }
-            }
-            
-            if (isGameOver) {
-                Button(
-                    onClick = {
-                        snake = listOf(Point(10, 10), Point(10, 11), Point(10, 12))
-                        direction = Direction.UP
-                        isGameOver = false
-                        score = 0
-                    },
-                    modifier = Modifier.padding(bottom = 32.dp)
-                ) {
-                    Text("GAME OVER - RESTART")
-                }
-            } else {
-                Text(
-                    text = "Score: $score",
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 32.dp)
+
+                // Game Over Overlay
+                GameOverPopup(
+                    visible = state.isGameOver,
+                    text = "GAME OVER 🐍",
+                    color = Color(0xFF1B5E20),
+                    onClick = { viewModel.startGame() }
                 )
             }
+            
+            Spacer(modifier = Modifier.height(32.dp))
         }
     }
 }

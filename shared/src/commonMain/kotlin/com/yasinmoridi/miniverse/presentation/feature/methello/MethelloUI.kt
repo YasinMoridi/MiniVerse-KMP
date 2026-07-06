@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.components.GameOverPopup
 import com.yasinmoridi.miniverse.presentation.feature.othello.OthelloPiece
 import com.yasinmoridi.miniverse.presentation.feature.othello.OthelloPieceItem
 import com.yasinmoridi.miniverse.presentation.feature.othello.OthelloBottomBar
@@ -179,27 +180,20 @@ fun MethelloUI(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Game Over Message
-                if (gameOver) {
-                    Surface(
-                        modifier = Modifier
-                            .clickable { viewModel.resetGame() }
-                            .border(2.dp, Color.White, RoundedCornerShape(12.dp)),
-                        color = Color(0xFF3B1B18),
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        Text(
-                            text = when {
-                                winner == OthelloPiece.BLACK -> "BLACK WINS!"
-                                winner == OthelloPiece.WHITE -> "WHITE WINS!"
-                                else -> "DRAW!"
-                            },
-                            modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                            color = Color.White,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Black
-                        )
-                    }
-                }
+                GameOverPopup(
+                    visible = gameOver,
+                    text = when {
+                        winner == OthelloPiece.BLACK -> "BLACK WINS! 🏆"
+                        winner == OthelloPiece.WHITE -> "WHITE WINS! 🏆"
+                        else -> "DRAW! 🤝"
+                    },
+                    color = when {
+                        winner == OthelloPiece.BLACK -> Color.Black
+                        winner == OthelloPiece.WHITE -> Color.White
+                        else -> Color.Gray
+                    },
+                    onClick = { viewModel.resetGame() }
+                )
             }
         }
     }

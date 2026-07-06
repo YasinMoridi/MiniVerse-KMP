@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.components.GameOverPopup
 import com.yasinmoridi.miniverse.utils.AppColor
 import com.yasinmoridi.miniverse.utils.UIStrings
 import org.koin.compose.viewmodel.koinViewModel
@@ -227,23 +228,14 @@ fun DotsAndBoxesUI(
                 Spacer(modifier = Modifier.height(40.dp))
 
                 // Status Message
-                if (winner != null) {
-                    Surface(
-                        modifier = Modifier
-                            .clickable { viewModel.resetGame() }
-                            .border(2.dp, Color.Black, RoundedCornerShape(12.dp)),
-                        color = if (winner == Player.BLUE) Color(0xFF38CEFF) else Color(0xFFEA2F03),
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        Text(
-                            text = if (winner == Player.BLUE) "BLUE WINS!" else "RED WINS!",
-                            modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                            color = Color.White,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Black
-                        )
-                    }
-                } else {
+                GameOverPopup(
+                    visible = winner != null,
+                    text = if (winner == Player.BLUE) "BLUE WINS! 🏆" else "RED WINS! 🏆",
+                    color = if (winner == Player.BLUE) Color(0xFF38CEFF) else Color(0xFFEA2F03),
+                    onClick = { viewModel.resetGame() }
+                )
+
+                if (winner == null) {
                     Text(
                         text = if (currentPlayer == Player.RED) "RED'S TURN" else "BLUE'S TURN",
                         color = if (currentPlayer == Player.RED) Color(0xFFEA2F03) else Color(0xFF38CEFF),

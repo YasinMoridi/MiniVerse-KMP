@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.components.GameOverPopup
 import com.yasinmoridi.miniverse.utils.AppColor
 import com.yasinmoridi.miniverse.utils.UIStrings
 import kotlinx.coroutines.delay
@@ -318,36 +319,18 @@ fun AvoidTheBlocksUI(
                 }
                 
                 // Game Over Overlay
-                if (isGameOver) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.Black.copy(alpha = 0.7f)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Text(
-                                "GAME OVER",
-                                color = Color.White,
-                                fontSize = 40.sp,
-                                fontWeight = FontWeight.Black
-                            )
-                            Spacer(Modifier.height(16.dp))
-                            Button(
-                                onClick = {
-                                    blocks.clear()
-                                    bullets.clear()
-                                    score = 0
-                                    isGameOver = false
-                                    rocketTargetX = 0.5f
-                                },
-                                shape = RoundedCornerShape(20.dp)
-                            ) {
-                                Text("RESTART", fontWeight = FontWeight.Bold)
-                            }
-                        }
+                GameOverPopup(
+                    visible = isGameOver,
+                    text = "MISSION FAILED! 🚀",
+                    color = Color(0xFFD32F2F),
+                    onClick = {
+                        blocks.clear()
+                        bullets.clear()
+                        score = 0
+                        isGameOver = false
+                        rocketTargetX = 0.5f
                     }
-                }
+                )
             }
             
             Spacer(Modifier.height(16.dp))

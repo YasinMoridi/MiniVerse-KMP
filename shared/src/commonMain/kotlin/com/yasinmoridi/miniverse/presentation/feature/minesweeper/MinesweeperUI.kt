@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.components.GameOverPopup
 import com.yasinmoridi.miniverse.utils.UIStrings
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -78,21 +79,6 @@ fun MinesweeperUI(
             contentAlignment = Alignment.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                // Game Status
-                if (status != GameStatus.IN_PROGRESS) {
-                    Text(
-                        text = if (status == GameStatus.WON) "YOU WIN!" else "GAME OVER",
-                        color = Color.White,
-                        fontSize = 32.sp,
-                        fontWeight = FontWeight.Black,
-                        modifier = Modifier.padding(bottom = 16.dp)
-                    )
-                    Button(onClick = { viewModel.resetGame() }) {
-                        Text("PLAY AGAIN")
-                    }
-                    Spacer(modifier = Modifier.height(24.dp))
-                }
-
                 // Grid
                 Column(
                     modifier = Modifier
@@ -110,6 +96,15 @@ fun MinesweeperUI(
                         }
                     }
                 }
+
+                Spacer(modifier = Modifier.height(40.dp))
+
+                GameOverPopup(
+                    visible = status != GameStatus.IN_PROGRESS,
+                    text = if (status == GameStatus.WON) "YOU WIN! 💣" else "BOOM! 💥",
+                    color = if (status == GameStatus.WON) Color(0xFF4CAF50) else Color(0xFFF44336),
+                    onClick = { viewModel.resetGame() }
+                )
             }
         }
     }
