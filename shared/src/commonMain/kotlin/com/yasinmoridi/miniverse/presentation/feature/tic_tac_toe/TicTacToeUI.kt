@@ -29,9 +29,13 @@ import org.koin.compose.viewmodel.koinViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TicTacToeUI(
+    playerCount: Int,
     navController: NavHostController,
     viewModel: TicTacToeVM = koinViewModel()
 ) {
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        viewModel.setPlayerCount(playerCount)
+    }
     val board = viewModel.board
     val winner = viewModel.winner
     val isDraw = viewModel.isDraw

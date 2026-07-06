@@ -37,10 +37,11 @@ fun SetUpNavGraph(navController: NavHostController) {
         }
         composable<AppDestination.GameInfo> {
             val args = it.toRoute<AppDestination.GameInfo>()
-            GameInfoUI(gameName = args.gameName, navController = navController)
+            GameInfoUI(gameName = args.gameName, playerCount = args.playerCount, navController = navController)
         }
         composable<AppDestination.TicTacToe> {
-            TicTacToeUI(navController = navController)
+            val args = it.toRoute<AppDestination.TicTacToe>()
+            TicTacToeUI(playerCount = args.playerCount, navController = navController)
         }
     }
 }

@@ -31,6 +31,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun GameInfoUI(
     gameName: String,
+    playerCount: Int,
     navController: NavHostController
 ) {
     // In a real app, we would fetch details based on gameName
@@ -172,7 +173,7 @@ fun GameInfoUI(
             Button(
                 onClick = {
                     if (gameName == UIStrings.TIC_TAC_TOE) {
-                        navController.navigate(AppDestination.TicTacToe)
+                        navController.navigate(AppDestination.TicTacToe(playerCount))
                     }
                 },
                 modifier = Modifier

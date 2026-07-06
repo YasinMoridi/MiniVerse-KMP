@@ -17,10 +17,10 @@ sealed interface AppDestination {
     data object Settings : AppDestination
 
     @Serializable
-    data class GameInfo(val gameName: String) : AppDestination
+    data class GameInfo(val gameName: String, val playerCount: Int) : AppDestination
 
     @Serializable
-    data object TicTacToe : AppDestination
+    data class TicTacToe(val playerCount: Int) : AppDestination
 }
 
 

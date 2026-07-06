@@ -99,7 +99,7 @@ fun HomeUI(
         ) {
             items(games) { game ->
                 GameCard(game) {
-                    navController.navigate(AppDestination.GameInfo(game.name))
+                    navController.navigate(AppDestination.GameInfo(game.name, playerCount))
                 }
             }
         }
