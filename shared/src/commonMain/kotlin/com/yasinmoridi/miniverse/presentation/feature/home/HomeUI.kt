@@ -43,6 +43,7 @@ fun HomeUI(
 ) {
     val gridState = rememberLazyGridState()
     val games = listOf(
+        Game(UIStrings.TIC_TAC_TOE, AppColor.CARD_TEXT_BOX_CYAN),
         Game(UIStrings.TAP_COUNTER, AppColor.CARD_TEXT_BOX_BLUE),
         Game(UIStrings.GUESS_THE_NUMBER, AppColor.CARD_TEXT_BOX_PURPLE),
         Game(UIStrings.SNAKE_BITE, AppColor.CARD_TEXT_BOX_GREEN),
@@ -51,7 +52,7 @@ fun HomeUI(
         Game(UIStrings.WORD_SCRAMBLE, AppColor.CARD_TEXT_BOX_ORANGE),
         Game(UIStrings.BRICK_BREAKER, AppColor.CARD_TEXT_BOX_GRAY),
         Game(UIStrings.CATCH_THE_OBJECT, AppColor.CARD_TEXT_BOX_YELLOW),
-        Game(UIStrings.COMING_SOON, AppColor.CARD_TEXT_BOX_CYAN)
+        Game(UIStrings.COMING_SOON, Color.Gray)
     )
 
     Scaffold(

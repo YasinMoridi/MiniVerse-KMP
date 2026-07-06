@@ -18,6 +18,9 @@ sealed interface AppDestination {
 
     @Serializable
     data class GameInfo(val gameName: String) : AppDestination
+
+    @Serializable
+    data object TicTacToe : AppDestination
 }
 
 

@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.yasinmoridi.miniverse.presentation.feature.home.HomeUI
 import com.yasinmoridi.miniverse.presentation.feature.game_info.GameInfoUI
+import com.yasinmoridi.miniverse.presentation.feature.tic_tac_toe.TicTacToeUI
 import com.yasinmoridi.miniverse.presentation.feature.settings.SettingsUI
 import com.yasinmoridi.miniverse.presentation.feature.splash.SplashUI
 import com.yasinmoridi.miniverse.presentation.feature.type.TypeUI
@@ -37,6 +38,9 @@ fun SetUpNavGraph(navController: NavHostController) {
         composable<AppDestination.GameInfo> {
             val args = it.toRoute<AppDestination.GameInfo>()
             GameInfoUI(gameName = args.gameName, navController = navController)
+        }
+        composable<AppDestination.TicTacToe> {
+            TicTacToeUI(navController = navController)
         }
     }
 }

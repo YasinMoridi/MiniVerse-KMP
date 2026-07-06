@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.yasinmoridi.miniverse.presentation.core.navigation.AppDestination
 import com.yasinmoridi.miniverse.utils.AppColor
 import com.yasinmoridi.miniverse.utils.UIStrings
 import miniverse.shared.generated.resources.Res
@@ -43,6 +44,7 @@ fun GameInfoUI(
         UIStrings.WORD_SCRAMBLE -> AppColor.CARD_TEXT_BOX_ORANGE
         UIStrings.BRICK_BREAKER -> AppColor.CARD_TEXT_BOX_GRAY
         UIStrings.CATCH_THE_OBJECT -> AppColor.CARD_TEXT_BOX_YELLOW
+        UIStrings.TIC_TAC_TOE -> Color(0xFF534BAE)
         else -> AppColor.CARD_TEXT_BOX_CYAN
     }
 
@@ -118,6 +120,28 @@ fun GameInfoUI(
                 )
             }
 
+            // Character Icon
+            Box(
+                modifier = Modifier
+                    .size(70.dp)
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .padding(3.dp)
+                    .clip(CircleShape)
+                    .background(Color.Black),
+                contentAlignment = Alignment.Center
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(CircleShape)
+                        .background(Color.White),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("😊", fontSize = 36.sp)
+                }
+            }
+
             Spacer(modifier = Modifier.height(12.dp))
 
             // Info Row
@@ -146,7 +170,11 @@ fun GameInfoUI(
 
             // Play Button
             Button(
-                onClick = { /* Start Game */ },
+                onClick = {
+                    if (gameName == UIStrings.TIC_TAC_TOE) {
+                        navController.navigate(AppDestination.TicTacToe)
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
                     .height(60.dp),

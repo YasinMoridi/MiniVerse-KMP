@@ -21,6 +21,7 @@ object UIStrings {
     const val WORD_SCRAMBLE = "WORD SCRAMBLE"
     const val BRICK_BREAKER = "BRICK BREAKER"
     const val CATCH_THE_OBJECT = "CATCH THE OBJECT"
+    const val TIC_TAC_TOE = "TIC TAC TOE"
     const val COMING_SOON = "COMING SOON"
 
     // Settings
