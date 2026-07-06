@@ -24,6 +24,12 @@ sealed interface AppDestination {
 
     @Serializable
     data object Minesweeper : AppDestination
+
+    @Serializable
+    data class Othello(val playerCount: Int) : AppDestination
+
+    @Serializable
+    data class Methello(val playerCount: Int) : AppDestination
 }
 
 

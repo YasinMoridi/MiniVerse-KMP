@@ -47,6 +47,8 @@ fun GameInfoUI(
         UIStrings.CATCH_THE_OBJECT -> AppColor.CARD_TEXT_BOX_YELLOW
         UIStrings.TIC_TAC_TOE -> Color(0xFF534BAE)
         UIStrings.MINESWEEPER -> AppColor.CARD_TEXT_BOX_ORANGE
+        UIStrings.OTHELLO -> Color(0xFF2E6B2A)
+        UIStrings.METHELLO -> Color(0xFF6B2E2A)
         else -> AppColor.CARD_TEXT_BOX_CYAN
     }
 
@@ -179,6 +181,12 @@ fun GameInfoUI(
                         }
                         UIStrings.MINESWEEPER -> {
                             navController.navigate(AppDestination.Minesweeper)
+                        }
+                        UIStrings.OTHELLO -> {
+                            navController.navigate(AppDestination.Othello(playerCount))
+                        }
+                        UIStrings.METHELLO -> {
+                            navController.navigate(AppDestination.Methello(playerCount))
                         }
                     }
                 },
