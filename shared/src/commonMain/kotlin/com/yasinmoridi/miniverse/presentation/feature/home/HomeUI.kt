@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,7 +34,11 @@ import miniverse.shared.generated.resources.Res
 import miniverse.shared.generated.resources.img_sword
 import org.jetbrains.compose.resources.painterResource
 
-data class Game(val name: String, val color: Color)
+data class Game(
+    val name: String, 
+    val color: Color, 
+    val supportedPlayerCounts: List<Int> = listOf(1, 2)
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,18 +47,21 @@ fun HomeUI(
     navController: NavHostController
 ) {
     val gridState = rememberLazyGridState()
-    val games = listOf(
-        Game(UIStrings.TIC_TAC_TOE, AppColor.CARD_TEXT_BOX_CYAN),
-        Game(UIStrings.TAP_COUNTER, AppColor.CARD_TEXT_BOX_BLUE),
-        Game(UIStrings.GUESS_THE_NUMBER, AppColor.CARD_TEXT_BOX_PURPLE),
-        Game(UIStrings.SNAKE_BITE, AppColor.CARD_TEXT_BOX_GREEN),
-        Game(UIStrings.AVOID_THE_BLOCKS, AppColor.CARD_TEXT_BOX_RED),
-        Game(UIStrings.QUIZ_MANIA, AppColor.CARD_TEXT_BOX_PINK),
-        Game(UIStrings.WORD_SCRAMBLE, AppColor.CARD_TEXT_BOX_ORANGE),
-        Game(UIStrings.BRICK_BREAKER, AppColor.CARD_TEXT_BOX_GRAY),
-        Game(UIStrings.CATCH_THE_OBJECT, AppColor.CARD_TEXT_BOX_YELLOW),
-        Game(UIStrings.COMING_SOON, Color.Gray)
-    )
+    
+    // All possible games
+    val allGames = remember {
+        listOf(
+            Game(UIStrings.TIC_TAC_TOE, AppColor.CARD_TEXT_BOX_CYAN, listOf(1, 2)),
+            // Add other games here in the future with their supported counts
+        )
+    }
+
+    // Filter games based on selected playerCount
+    val filteredGames = remember(playerCount) {
+        allGames.filter { game -> 
+            playerCount in game.supportedPlayerCounts 
+        } + Game(UIStrings.COMING_SOON, Color.Gray, listOf(1, 2, 3, 4)) // Always show Coming Soon
+    }
 
     Scaffold(
         containerColor = AppColor.HOME_BG,
@@ -97,9 +105,11 @@ fun HomeUI(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            items(games) { game ->
+            items(filteredGames) { game ->
                 GameCard(game) {
-                    navController.navigate(AppDestination.GameInfo(game.name, playerCount))
+                    if (game.name != UIStrings.COMING_SOON) {
+                        navController.navigate(AppDestination.GameInfo(game.name, playerCount))
+                    }
                 }
             }
         }
