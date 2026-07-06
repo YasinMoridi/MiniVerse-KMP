@@ -3,6 +3,7 @@ name: Build Multiplatform App
 on:
   push:
     branches: [ "main", "master" ]
+    tags: [ "v*.*.*" ]
   pull_request:
     branches: [ "main", "master" ]
   workflow_dispatch:
@@ -54,11 +55,14 @@ jobs:
           ./gradlew :webApp:wasmJsBrowserDistribution
           ./gradlew :webApp:jsBrowserDistribution
 
+      - name: Zip Web Artifacts
+        run: zip -r web-dist.zip webApp/build/dist/
+
       - name: Upload Web Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: web-dist
-          path: webApp/build/dist/
+          path: web-dist.zip
 
   build-desktop-windows:
     runs-on: windows-latest
@@ -143,8 +147,69 @@ jobs:
       - name: Build iOS Framework
         run: ./gradlew :shared:linkReleaseFrameworkIosArm64
 
+      - name: Zip iOS Framework
+        run: |
+          cd shared/build/bin/iosArm64/releaseFramework/
+          zip -r ../../../../ios-framework.zip *.framework
+
       - name: Upload iOS Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-framework
-          path: shared/build/bin/iosArm64/releaseFramework/*.framework
+          path: ios-framework.zip
+
+  create-release:
+    needs: [build-android, build-web, build-desktop-windows, build-desktop-linux, build-macos, build-ios]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v'))
+    permissions:
+      contents: write
+    steps:
+      - name: Download Android
+        uses: actions/download-artifact@v4
+        with:
+          name: android-release
+          path: release/android
+
+      - name: Download Windows
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-msi
+          path: release/windows
+
+      - name: Download Linux
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-deb
+          path: release/linux
+
+      - name: Download Mac
+        uses: actions/download-artifact@v4
+        with:
+          name: macos-dmg
+          path: release/macos
+
+      - name: Download Web
+        uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: release/web
+
+      - name: Download iOS
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-framework
+          path: release/ios
+
+      - name: Debug files
+        run: ls -R release
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || format('v1.0.{0}', github.run_number) }}
+          name: ${{ github.ref_type == 'tag' && format('Release {0}', github.ref_name) || format('Release v1.0.{0}', github.run_number) }}
+          generate_release_notes: true
+          files: release/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
