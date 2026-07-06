@@ -59,6 +59,23 @@ It follows modern Android development practices, utilizing **Material 3** for a 
 | **Web (JS)** | `webApp/build/dist/js/productionExecutable/` |
 | **iOS** | `shared/build/bin/iosArm64/releaseFramework/` |
 
+### 🤖 Automated CI/CD (GitHub Actions)
+This project is equipped with GitHub Actions for automated building of all platforms, including macOS and iOS, which would otherwise require a Mac computer.
+
+#### 🛠️ Setup GitHub Secrets
+To enable the automated Android build (Signed APK), you must add the following secrets to your GitHub repository:
+1. Go to **Settings** > **Secrets and variables** > **Actions**.
+2. Click **New repository secret** and add:
+   - `RELEASE_STORE_PASSWORD`: Your Keystore password.
+   - `RELEASE_KEY_ALIAS`: Your Key alias (e.g., `miniverse-alias`).
+   - `RELEASE_KEY_PASSWORD`: Your Key password.
+
+#### 📥 How to get the builds
+1. Every time you **push** your code to the `main` or `master` branch, a build will start automatically.
+2. Go to the **Actions** tab in your GitHub repository.
+3. Select the latest workflow run.
+4. Once completed, scroll down to the **Artifacts** section to download the builds for Android, Windows, macOS, Linux, and Web.
+
 ## 📱 Screenshots
 
 <!--
