@@ -52,6 +52,7 @@ fun HomeUI(
     val allGames = remember {
         listOf(
             Game(UIStrings.TIC_TAC_TOE, AppColor.CARD_TEXT_BOX_CYAN, listOf(1, 2)),
+            Game(UIStrings.DOTS_AND_BOXES, AppColor.CARD_TEXT_BOX_YELLOW, listOf(1, 2)),
             Game(UIStrings.MINESWEEPER, AppColor.CARD_TEXT_BOX_ORANGE, listOf(1)),
             Game(UIStrings.OTHELLO, Color(0xFF2E6B2A), listOf(1, 2)),
             Game(UIStrings.METHELLO, Color(0xFF6B2E2A), listOf(1, 2)),

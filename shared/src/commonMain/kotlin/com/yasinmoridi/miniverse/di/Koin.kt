@@ -4,6 +4,7 @@ import com.yasinmoridi.miniverse.data.remote.MiniVerseApi
 import com.yasinmoridi.miniverse.presentation.feature.home.HomeVM
 import com.yasinmoridi.miniverse.presentation.feature.splash.SplashVM
 import com.yasinmoridi.miniverse.presentation.feature.tic_tac_toe.TicTacToeVM
+import com.yasinmoridi.miniverse.presentation.feature.dots_and_boxes.DotsAndBoxesVM
 import com.yasinmoridi.miniverse.presentation.feature.minesweeper.MinesweeperVM
 import com.yasinmoridi.miniverse.presentation.feature.othello.OthelloVM
 import com.yasinmoridi.miniverse.presentation.feature.methello.MethelloVM
@@ -19,6 +20,7 @@ val appModule = module {
     viewModelOf(::SplashVM)
     viewModelOf(::HomeVM)
     viewModelOf(::TicTacToeVM)
+    viewModelOf(::DotsAndBoxesVM)
     viewModelOf(::MinesweeperVM)
     viewModelOf(::OthelloVM)
     viewModelOf(::MethelloVM)

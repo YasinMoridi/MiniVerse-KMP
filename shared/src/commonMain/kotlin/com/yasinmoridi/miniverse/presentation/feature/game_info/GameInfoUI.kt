@@ -35,7 +35,13 @@ fun GameInfoUI(
     navController: NavHostController
 ) {
     // In a real app, we would fetch details based on gameName
-    val description = "Can you find the hidden number?\nUse logic and hints to guess the\ncorrect number in the fewest tries."
+    val description = when(gameName) {
+        UIStrings.DOTS_AND_BOXES -> if (UIStrings.language == com.yasinmoridi.miniverse.utils.AppLanguage.ENGLISH)
+            "Connect dots to form boxes.\nCompleting a box gives you a point\nand another turn!"
+        else
+            "نقطه‌ها را به هم وصل کنید تا مربع بسازید.\nبا کامل کردن هر مربع یک امتیاز\nو یک نوبت جایزه بگیرید!"
+        else -> "Can you find the hidden number?\nUse logic and hints to guess the\ncorrect number in the fewest tries."
+    }
     val gameColor = when (gameName) {
         UIStrings.GUESS_THE_NUMBER -> AppColor.CARD_TEXT_BOX_PURPLE
         UIStrings.TAP_COUNTER -> AppColor.CARD_TEXT_BOX_BLUE
@@ -46,6 +52,7 @@ fun GameInfoUI(
         UIStrings.BRICK_BREAKER -> AppColor.CARD_TEXT_BOX_GRAY
         UIStrings.CATCH_THE_OBJECT -> AppColor.CARD_TEXT_BOX_YELLOW
         UIStrings.TIC_TAC_TOE -> Color(0xFF534BAE)
+        UIStrings.DOTS_AND_BOXES -> AppColor.CARD_TEXT_BOX_YELLOW
         UIStrings.MINESWEEPER -> AppColor.CARD_TEXT_BOX_ORANGE
         UIStrings.OTHELLO -> Color(0xFF2E6B2A)
         UIStrings.METHELLO -> Color(0xFF6B2E2A)
@@ -178,6 +185,9 @@ fun GameInfoUI(
                     when (gameName) {
                         UIStrings.TIC_TAC_TOE -> {
                             navController.navigate(AppDestination.TicTacToe(playerCount))
+                        }
+                        UIStrings.DOTS_AND_BOXES -> {
+                            navController.navigate(AppDestination.DotsAndBoxes(playerCount))
                         }
                         UIStrings.MINESWEEPER -> {
                             navController.navigate(AppDestination.Minesweeper)

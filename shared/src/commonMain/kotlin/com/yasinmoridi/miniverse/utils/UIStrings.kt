@@ -34,6 +34,7 @@ object UIStrings {
     val BRICK_BREAKER get() = if (isEn) "BRICK BREAKER" else "آجر شکن"
     val CATCH_THE_OBJECT get() = if (isEn) "CATCH THE OBJECT" else "گرفتن اشیاء"
     val TIC_TAC_TOE get() = if (isEn) "TIC TAC TOE" else "دوز"
+    val DOTS_AND_BOXES get() = if (isEn) "DOTS AND BOXES" else "نقطه خط"
     val MINESWEEPER get() = if (isEn) "MINESWEEPER" else "مین‌روب"
     val OTHELLO get() = if (isEn) "OTHELLO" else "اتلو"
     val METHELLO get() = if (isEn) "METHELLO" else "متلو"

@@ -10,6 +10,7 @@ import androidx.navigation.toRoute
 import com.yasinmoridi.miniverse.presentation.feature.home.HomeUI
 import com.yasinmoridi.miniverse.presentation.feature.game_info.GameInfoUI
 import com.yasinmoridi.miniverse.presentation.feature.tic_tac_toe.TicTacToeUI
+import com.yasinmoridi.miniverse.presentation.feature.dots_and_boxes.DotsAndBoxesUI
 import com.yasinmoridi.miniverse.presentation.feature.minesweeper.MinesweeperUI
 import com.yasinmoridi.miniverse.presentation.feature.othello.OthelloUI
 import com.yasinmoridi.miniverse.presentation.feature.methello.MethelloUI
@@ -47,6 +48,10 @@ fun SetUpNavGraph(navController: NavHostController) {
         composable<AppDestination.TicTacToe> {
             val args = it.toRoute<AppDestination.TicTacToe>()
             TicTacToeUI(playerCount = args.playerCount, navController = navController)
+        }
+        composable<AppDestination.DotsAndBoxes> {
+            val args = it.toRoute<AppDestination.DotsAndBoxes>()
+            DotsAndBoxesUI(playerCount = args.playerCount, navController = navController)
         }
         composable<AppDestination.Minesweeper> {
             MinesweeperUI(navController = navController)
